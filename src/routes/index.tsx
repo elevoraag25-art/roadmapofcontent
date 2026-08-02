@@ -286,7 +286,7 @@ function BlueprintPage() {
           <section className="sheet" id="s01">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 01 / 08</span>
+                <span className="sheet-num">SHEET 01 / 13</span>
                 <h3>علم الخوارزمية — كيف تفكّر الآلة؟</h3>
                 <p className="sheet-sub">
                   المنصات لا تقرأ المحتوى، هي تقرأ سلوك المشاهد تجاهه. كل فعل يقوم به المشاهد يمنحك
@@ -415,7 +415,7 @@ function BlueprintPage() {
           <section className="sheet" id="s02">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 02 / 08</span>
+                <span className="sheet-num">SHEET 02 / 13</span>
                 <h3>ثالوث الهندسة الفيروسية — منهجية نبيل محبوب</h3>
                 <p className="sheet-sub">
                   ثلاث محطات متتالية: اصطياد الانتباه، منع الهروب، ثم تحويل المشاهدة إلى مشاركة.
@@ -514,7 +514,7 @@ function BlueprintPage() {
           <section className="sheet" id="s03">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 03 / 08</span>
+                <span className="sheet-num">SHEET 03 / 13</span>
                 <h3>معادلة العرض الذي لا يقاوم — أليكس هرموزي</h3>
                 <p className="sheet-sub">
                   إذا كان منتجك "سلعة عادية" (Commodity)، ستضطر لخفض السعر لتبيع. هرموزي يعلّمك كيف
@@ -724,7 +724,7 @@ function BlueprintPage() {
           <section className="sheet" id="s04">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 04 / 08</span>
+                <span className="sheet-num">SHEET 04 / 13</span>
                 <h3>تشريح السكريبت وسيكولوجية المونتاج</h3>
                 <p className="sheet-sub">لا تترك شيئاً للصدفة. الفيديوهات تُهندَس، ولا تُرتجل.</p>
               </div>
@@ -869,7 +869,7 @@ function BlueprintPage() {
           <section className="sheet" id="s05">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 05 / 08</span>
+                <span className="sheet-num">SHEET 05 / 13</span>
                 <h3>قمع المبيعات والأتمتة</h3>
                 <p className="sheet-sub">
                   المشاهدات المجانية لا تعني أموالاً في البنك، إلا إذا كان لديك "نظام اصطياد"
@@ -984,7 +984,7 @@ function BlueprintPage() {
           <section className="sheet" id="s06">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 06 / 08</span>
+                <span className="sheet-num">SHEET 06 / 13</span>
                 <h3>مصنع الأفكار — مصفوفة المحتوى اللانهائية</h3>
                 <p className="sheet-sub">
                   لا تنتظر الإلهام. ادمج "الموضوع" مع "الهيكل" لتوليد عشرات الأفكار فوراً.
@@ -1064,7 +1064,7 @@ function BlueprintPage() {
           <section className="sheet" id="s07">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 07 / 08</span>
+                <span className="sheet-num">SHEET 07 / 13</span>
                 <h3>بروتوكول التنفيذ الأسبوعي (The Factory Protocol)</h3>
                 <p className="sheet-sub">
                   صناعة المحتوى يومياً تؤدي للاحتراق (Burnout). اعمل بنظام الدفعات (Batching) بدل
@@ -1258,7 +1258,7 @@ function BlueprintPage() {
             </div>
           </section>
 
-          <div className="foot">DWG SET — CONTENT-TO-CASH ENGINE · REV B · نسخة موسّعة</div>
+          <div className="foot">DWG SET — CONTENT-TO-CASH ENGINE · REV C · نسخة موسّعة</div>
         </main>
       </div>
     </>
