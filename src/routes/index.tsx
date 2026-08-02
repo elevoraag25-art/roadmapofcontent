@@ -1153,11 +1153,18 @@ function BlueprintPage() {
             </div>
           </section>
 
-          {/* SHEET 08 */}
-          <section className="sheet" id="s08">
+          <Sheet08 />
+          <Sheet09 />
+          <Sheet10 />
+          <Sheet11 />
+          <Sheet12 />
+
+          {/* SHEET 13 */}
+          <section className="sheet" id="s13">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 08 / 08</span>
+                <span className="sheet-num">SHEET 13 / 13</span>
+
                 <h3>الورقة المرجعية السريعة</h3>
                 <p className="sheet-sub">
                   راجع هاد القائمة قبل كل جلسة تصوير أو كتابة — بدل الرجوع لكل اللوحات من جديد.
