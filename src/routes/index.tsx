@@ -1,6 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { StagesChart, RetentionChart } from "@/components/blueprint/Charts";
+import { Sheet08 } from "@/components/blueprint/sheets/Sheet08";
+import { Sheet09 } from "@/components/blueprint/sheets/Sheet09";
+import { Sheet10 } from "@/components/blueprint/sheets/Sheet10";
+import { Sheet11 } from "@/components/blueprint/sheets/Sheet11";
+import { Sheet12 } from "@/components/blueprint/sheets/Sheet12";
 
 export const Route = createFileRoute("/")({
   component: BlueprintPage,
@@ -14,8 +19,14 @@ const SHEETS = [
   { id: "s05", code: "05", label: "قمع البيع والأتمتة", icon: "fa-filter" },
   { id: "s06", code: "06", label: "مصنع الأفكار", icon: "fa-lightbulb" },
   { id: "s07", code: "07", label: "بروتوكول التنفيذ", icon: "fa-list-check" },
-  { id: "s08", code: "08", label: "الورقة المرجعية", icon: "fa-flag-checkered" },
+  { id: "s08", code: "08", label: "مصفوفة الزوايا", icon: "fa-compass-drafting" },
+  { id: "s09", code: "09", label: "علم الفيروسية", icon: "fa-chart-line" },
+  { id: "s10", code: "10", label: "محرك الإعلانات", icon: "fa-bullhorn" },
+  { id: "s11", code: "11", label: "بنك الخطافات", icon: "fa-fish" },
+  { id: "s12", code: "12", label: "نظام الرافعة", icon: "fa-people-group" },
+  { id: "s13", code: "13", label: "الورقة المرجعية", icon: "fa-flag-checkered" },
 ];
+
 
 function NavList({ activeId, onNavigate }: { activeId: string; onNavigate?: () => void }) {
   return (
@@ -275,7 +286,7 @@ function BlueprintPage() {
           <section className="sheet" id="s01">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 01 / 08</span>
+                <span className="sheet-num">SHEET 01 / 13</span>
                 <h3>علم الخوارزمية — كيف تفكّر الآلة؟</h3>
                 <p className="sheet-sub">
                   المنصات لا تقرأ المحتوى، هي تقرأ سلوك المشاهد تجاهه. كل فعل يقوم به المشاهد يمنحك
@@ -404,7 +415,7 @@ function BlueprintPage() {
           <section className="sheet" id="s02">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 02 / 08</span>
+                <span className="sheet-num">SHEET 02 / 13</span>
                 <h3>ثالوث الهندسة الفيروسية — منهجية نبيل محبوب</h3>
                 <p className="sheet-sub">
                   ثلاث محطات متتالية: اصطياد الانتباه، منع الهروب، ثم تحويل المشاهدة إلى مشاركة.
@@ -503,7 +514,7 @@ function BlueprintPage() {
           <section className="sheet" id="s03">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 03 / 08</span>
+                <span className="sheet-num">SHEET 03 / 13</span>
                 <h3>معادلة العرض الذي لا يقاوم — أليكس هرموزي</h3>
                 <p className="sheet-sub">
                   إذا كان منتجك "سلعة عادية" (Commodity)، ستضطر لخفض السعر لتبيع. هرموزي يعلّمك كيف
@@ -713,7 +724,7 @@ function BlueprintPage() {
           <section className="sheet" id="s04">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 04 / 08</span>
+                <span className="sheet-num">SHEET 04 / 13</span>
                 <h3>تشريح السكريبت وسيكولوجية المونتاج</h3>
                 <p className="sheet-sub">لا تترك شيئاً للصدفة. الفيديوهات تُهندَس، ولا تُرتجل.</p>
               </div>
@@ -858,7 +869,7 @@ function BlueprintPage() {
           <section className="sheet" id="s05">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 05 / 08</span>
+                <span className="sheet-num">SHEET 05 / 13</span>
                 <h3>قمع المبيعات والأتمتة</h3>
                 <p className="sheet-sub">
                   المشاهدات المجانية لا تعني أموالاً في البنك، إلا إذا كان لديك "نظام اصطياد"
@@ -973,7 +984,7 @@ function BlueprintPage() {
           <section className="sheet" id="s06">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 06 / 08</span>
+                <span className="sheet-num">SHEET 06 / 13</span>
                 <h3>مصنع الأفكار — مصفوفة المحتوى اللانهائية</h3>
                 <p className="sheet-sub">
                   لا تنتظر الإلهام. ادمج "الموضوع" مع "الهيكل" لتوليد عشرات الأفكار فوراً.
@@ -1053,7 +1064,7 @@ function BlueprintPage() {
           <section className="sheet" id="s07">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 07 / 08</span>
+                <span className="sheet-num">SHEET 07 / 13</span>
                 <h3>بروتوكول التنفيذ الأسبوعي (The Factory Protocol)</h3>
                 <p className="sheet-sub">
                   صناعة المحتوى يومياً تؤدي للاحتراق (Burnout). اعمل بنظام الدفعات (Batching) بدل
@@ -1142,11 +1153,18 @@ function BlueprintPage() {
             </div>
           </section>
 
-          {/* SHEET 08 */}
-          <section className="sheet" id="s08">
+          <Sheet08 />
+          <Sheet09 />
+          <Sheet10 />
+          <Sheet11 />
+          <Sheet12 />
+
+          {/* SHEET 13 */}
+          <section className="sheet" id="s13">
             <div className="sheet-head">
               <div className="sheet-title-wrap">
-                <span className="sheet-num">SHEET 08 / 08</span>
+                <span className="sheet-num">SHEET 13 / 13</span>
+
                 <h3>الورقة المرجعية السريعة</h3>
                 <p className="sheet-sub">
                   راجع هاد القائمة قبل كل جلسة تصوير أو كتابة — بدل الرجوع لكل اللوحات من جديد.
@@ -1169,6 +1187,8 @@ function BlueprintPage() {
                 ["العرض مبني بمعادلة هرموزي؟", "نتيجة حلم + ضمان، جهد ووقت أقل، لا سعر أقل."],
                 ["القمع متدرّج TOFU→MOFU→BOFU؟", "لا تبيع في أول فيديو يشوفه الجمهور."],
                 ["تحليل الـ48 ساعة مجدول؟", "كرّر الفائز، اقتل الخاسر، بلا عاطفة."],
+                ["الزاوية النفسية واضحة ومحددة (واحدة فقط)؟", "خوف، فضول، دليل اجتماعي، أو رأي مثير للجدل — وليس أكثر من محفز واحد"],
+                ["الفيديو الفائز عضوياً جاهز ليتحول لإعلان مدفوع؟", "نسبة احتفاظ فوق 50% = مرشح مباشر لميزانية اختبار"],
               ].map(([t, d]) => (
                 <div className="check-item" key={t}>
                   <i className="fas fa-check"></i>
@@ -1179,6 +1199,44 @@ function BlueprintPage() {
                 </div>
               ))}
             </div>
+
+            <div className="panel" style={{ marginBottom: "3rem" }}>
+              <h4>
+                <i className="fas fa-gauge" style={{ color: "var(--money)" }}></i> لوحة القياس
+                الأسبوعية
+              </h4>
+              <p style={{ marginBottom: "1rem" }}>
+                هاد اللوحة هي الحلقة الأخيرة لي كتربط المحتوى بالكاش فعلياً — راجعها كل نهاية
+                أسبوع، ماشي كل يوم.
+              </p>
+              <div className="table-wrap">
+                <table className="tech">
+                  <thead>
+                    <tr>
+                      <th>المؤشر</th>
+                      <th>المصدر</th>
+                      <th>متى تقلق</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      ["نسبة الاحتفاظ (Retention)", "فيديوهاتك العضوية", "إذا نزلت تحت 20% بشكل متكرر"],
+                      ["معدل المشاركة (Share Rate)", "فيديوهاتك العضوية", "إذا لم يتجاوز أي فيديو نسبة تقارب 3% خلال الشهر"],
+                      ["عدد الليدز من DM/ManyChat", "قمع البيع", "إذا كان أقل من عدد التعليقات بفارق كبير"],
+                      ["تكلفة الألف مشاهدة ونسبة النقر (CPM/CTR)", "حملاتك المدفوعة", "إذا استمر إعلان تحت المتوسط لأكثر من 72 ساعة"],
+                      ["عدد المبيعات المؤكدة (خاصة لأسواق COD)", "مكالمات/رسائل التأكيد", "إذا انخفضت نسبة التأكيد عن المعتاد بشكل واضح"],
+                    ].map(([a, b, c]) => (
+                      <tr key={a}>
+                        <th>{a}</th>
+                        <td>{b}</td>
+                        <td>{c}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
 
             <div className="final-cta">
               <span className="stamp">APPROVED FOR EXECUTION</span>
@@ -1200,7 +1258,7 @@ function BlueprintPage() {
             </div>
           </section>
 
-          <div className="foot">DWG SET — CONTENT-TO-CASH ENGINE · REV B · نسخة موسّعة</div>
+          <div className="foot">DWG SET — CONTENT-TO-CASH ENGINE · REV C · نسخة موسّعة</div>
         </main>
       </div>
     </>
