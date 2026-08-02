@@ -1,6 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { StagesChart, RetentionChart } from "@/components/blueprint/Charts";
+import { Sheet08 } from "@/components/blueprint/sheets/Sheet08";
+import { Sheet09 } from "@/components/blueprint/sheets/Sheet09";
+import { Sheet10 } from "@/components/blueprint/sheets/Sheet10";
+import { Sheet11 } from "@/components/blueprint/sheets/Sheet11";
+import { Sheet12 } from "@/components/blueprint/sheets/Sheet12";
 
 export const Route = createFileRoute("/")({
   component: BlueprintPage,
@@ -14,8 +19,14 @@ const SHEETS = [
   { id: "s05", code: "05", label: "قمع البيع والأتمتة", icon: "fa-filter" },
   { id: "s06", code: "06", label: "مصنع الأفكار", icon: "fa-lightbulb" },
   { id: "s07", code: "07", label: "بروتوكول التنفيذ", icon: "fa-list-check" },
-  { id: "s08", code: "08", label: "الورقة المرجعية", icon: "fa-flag-checkered" },
+  { id: "s08", code: "08", label: "مصفوفة الزوايا", icon: "fa-compass-drafting" },
+  { id: "s09", code: "09", label: "علم الفيروسية", icon: "fa-chart-line" },
+  { id: "s10", code: "10", label: "محرك الإعلانات", icon: "fa-bullhorn" },
+  { id: "s11", code: "11", label: "بنك الخطافات", icon: "fa-fish" },
+  { id: "s12", code: "12", label: "نظام الرافعة", icon: "fa-people-group" },
+  { id: "s13", code: "13", label: "الورقة المرجعية", icon: "fa-flag-checkered" },
 ];
+
 
 function NavList({ activeId, onNavigate }: { activeId: string; onNavigate?: () => void }) {
   return (
