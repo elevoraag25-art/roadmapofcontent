@@ -3,7 +3,7 @@ export function Sheet10() {
     <section className="sheet" id="s10">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 10 / 13</span>
+          <span className="sheet-num">SHEET 10 / 14</span>
           <h3>محرك الإعلانات المدفوعة — من العضوي إلى الكاش السريع</h3>
           <p className="sheet-sub">
             المحتوى العضوي يبني الثقة على المدى الطويل. الإعلانات المدفوعة تُسرّع الكاش اليوم —

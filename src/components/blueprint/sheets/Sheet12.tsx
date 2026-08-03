@@ -3,7 +3,7 @@ export function Sheet12() {
     <section className="sheet" id="s12">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 12 / 13</span>
+          <span className="sheet-num">SHEET 12 / 14</span>
           <h3>نظام الرافعة — حوّل جمهورك وعملاءك لفريق تسويق</h3>
           <p className="sheet-sub">
             أنت لست الوحيد القادر على جلب العملاء. أربع مجموعات حواليك يمكنها فعل ذلك نيابة عنك،
