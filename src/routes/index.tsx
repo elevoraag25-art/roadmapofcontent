@@ -168,30 +168,43 @@ function BlueprintPage() {
 
       {/* Mobile top bar */}
       <div className="mobile-bar">
-        <h1>
+        <div className="mb-title">
           مخطط <span>الفيرال</span>
-        </h1>
-        <button className="mobile-toggle" onClick={() => setMobileOpen(true)}>
-          <i className="fas fa-bars"></i>
+        </div>
+        <button
+          className="mobile-toggle"
+          onClick={() => setMobileOpen(true)}
+          aria-label="فتح فهرس اللوحات"
+          aria-expanded={mobileOpen}
+        >
+          <i className="fas fa-bars" aria-hidden="true"></i>
         </button>
       </div>
 
       {/* Mobile menu */}
-      <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
-        <button className="close-btn" onClick={() => setMobileOpen(false)}>
-          <i className="fas fa-xmark"></i>
+      <nav
+        className={`mobile-menu ${mobileOpen ? "open" : ""}`}
+        aria-label="فهرس اللوحات"
+        aria-hidden={!mobileOpen}
+      >
+        <button
+          className="close-btn"
+          onClick={() => setMobileOpen(false)}
+          aria-label="إغلاق الفهرس"
+        >
+          <i className="fas fa-xmark" aria-hidden="true"></i>
         </button>
         <NavList activeId={activeId} onNavigate={() => setMobileOpen(false)} />
-      </div>
+      </nav>
 
       <div className="shell">
         {/* Sidebar */}
         <nav className="sidebar">
           <div className="brand">
             <span className="mono">DWG SET — CONTENT ENGINE</span>
-            <h1>
+            <p className="brand-title">
               مخطط <span>الهندسة</span> الفيروسية
-            </h1>
+            </p>
             <span className="tagline">من الفكرة إلى الكاش — نسخة موسّعة ومُدقّقة</span>
           </div>
           <p className="navlist-label">فهرس اللوحات</p>
@@ -210,10 +223,10 @@ function BlueprintPage() {
             <span className="hero-eyebrow">
               <i className="fas fa-drafting-compass"></i> SHEET 00 — المخطط الرئيسي
             </span>
-            <h2>
+            <h1>
               هندسة المحتوى الفيروسي، <span className="accent">مبنية على القياس</span>،<br />
               موجّهة نحو <span className="accent2">الكاش</span>.
-            </h2>
+            </h1>
             <p className="lede">
               هذه ليست مقالة تحفيزية. هذا مخطط هندسي كامل — يدمج علم الخوارزميات، ثالوث نبيل محبوب
               في هندسة الفيرال (الخطاف، الاحتفاظ، العاطفة)، ومعادلة أليكس هرموزي في تسعير العروض —
@@ -226,7 +239,7 @@ function BlueprintPage() {
                 المحرك: من الفكرة إلى الكاش
               </h4>
               <p style={{ marginBottom: "1.2rem" }}>
-                مرّر المؤشر فوق كل عقدة لقراءة وظيفتها. هذه هي السلسلة الكاملة التي تُبنى عليها كل
+                كل عقدة مشروحة بوظيفتها تحت اسمها. هذه هي السلسلة الكاملة التي تُبنى عليها كل
                 لوحة لاحقة في هذا الدليل.
               </p>
               <div className="schematic" style={{ minWidth: 760 }}>
