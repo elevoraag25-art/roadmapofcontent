@@ -279,7 +279,19 @@ function BlueprintPage() {
                   </div>
                 </div>
               </div>
+              <div style={{ marginTop: "1.4rem" }}>
+                <h5 style={{ marginBottom: "0.7rem" }}>
+                  <i className="fas fa-layer-group" style={{ color: "var(--cyan)" }}></i> طبقات
+                  التعميق (اللوحات 08-13)
+                </h5>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                  <span className="badge">الزوايا (08) + بنك الخطافات (11) → تُغذّي عقدة الخطاف NODE 02</span>
+                  <span className="badge">علم الفيروسية (09) → يُعمّق عقدة الخوارزمية NODE 01 والاحتفاظ NODE 03</span>
+                  <span className="badge">الإعلانات (10) والرافعة (12) → يفتحان مصدر كاش موازٍ لعقدة NODE 08</span>
+                </div>
+              </div>
             </div>
+
           </section>
 
           {/* SHEET 01 */}
@@ -1151,7 +1163,46 @@ function BlueprintPage() {
                 </div>
               </div>
             </div>
+
+            <div className="panel" style={{ marginTop: "2.4rem" }}>
+              <h4>
+                <i className="fas fa-calendar-week" style={{ color: "var(--cyan)" }}></i> تقويم
+                المحتوى الأسبوعي — ترجمة نسبة TOFU/MOFU/BOFU لأرقام فعلية
+              </h4>
+              <div className="table-wrap">
+                <table className="tech">
+                  <thead>
+                    <tr>
+                      <th>الفئة</th>
+                      <th>النسبة</th>
+                      <th>العدد لو نشرت 7 فيديوهات/أسبوع</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      ["TOFU (وعي/فيروسي)", "60%", "4 فيديوهات"],
+                      ["MOFU (توليد Leads)", "20%", "1-2 فيديو"],
+                      ["BOFU (بيع مباشر/عرض)", "20%", "1 فيديو"],
+                    ].map(([a, b, c]) => (
+                      <tr key={a}>
+                        <th>{a}</th>
+                        <td>{b}</td>
+                        <td>{c}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="panel" data-accent="cyan" style={{ marginTop: "1.6rem" }}>
+              <p>
+                إذا كنت تنشر أقل من 7 أسبوعياً، حافظ على نفس النسبة التقريبية 60/20/20 مهما كان
+                العدد الكلي — النسبة أهم من الرقم المطلق.
+              </p>
+            </div>
           </section>
+
 
           <Sheet08 />
           <Sheet09 />
