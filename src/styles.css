@@ -318,3 +318,194 @@ table.tech tbody tr:hover { background: rgba(105,211,255,0.05); }
 .check-item p { font-size: 0.8rem; color: var(--text-muted); }
 
 .foot { text-align: center; padding: 2rem 1rem; color: var(--text-muted); font-size: 0.78rem; font-family: "IBM Plex Mono", monospace; border-top: 1px solid rgba(148,205,255,0.1); }
+
+/* ============================================================
+   RESPONSIVE & READABILITY PASS
+   ============================================================ */
+
+/* --- Fluid typography & rhythm --- */
+body { font-size: 0.97rem; line-height: 1.8; text-wrap: pretty; }
+@media (min-width: 768px) { body { font-size: 1rem; } }
+h1, h2, h3, h4, h5 { text-wrap: balance; }
+
+/* --- Sheet spacing scales down on small screens --- */
+.sheet { margin-bottom: 4rem; }
+@media (min-width: 768px) { .sheet { margin-bottom: 5.5rem; } }
+@media (min-width: 1024px) { .sheet { margin-bottom: 6.5rem; } }
+.sheet-head { gap: 0.6rem 1rem; }
+.sheet-sub { font-size: 0.92rem; line-height: 1.85; }
+@media (min-width: 768px) { .sheet-sub { font-size: 0.98rem; } }
+@media (max-width: 640px) {
+  .sheet-meta { text-align: right; font-size: 0.64rem; line-height: 1.7; }
+}
+
+/* --- Main padding --- */
+.main { padding: 2rem 1rem 4rem; }
+@media (min-width: 640px) { .main { padding: 2.6rem 1.6rem 5rem; } }
+
+/* --- Grids: never crush cards on phones --- */
+.grid-4 { grid-template-columns: 1fr; }
+@media (min-width: 520px) { .grid-4 { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 519px) { .grid-2, .grid-3, .grid-4 { gap: 1rem; } }
+
+/* --- Panels & paper: comfortable padding on phones --- */
+@media (max-width: 640px) {
+  .panel { padding: 1.25rem 1.1rem; }
+  .paper { padding: 1.25rem 1.1rem; }
+  .panel h4 { font-size: 1.05rem; line-height: 1.55; }
+  .panel p, .panel li { font-size: 0.9rem; }
+  .paper p, .paper li { font-size: 0.9rem; }
+  .quote { font-size: 0.9rem; padding: 0.9rem 1rem; }
+  .final-cta { padding: 2.8rem 1.1rem; }
+}
+
+/* --- Tables: scroll horizontally instead of shredding words --- */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(148, 205, 255, 0.12);
+  border-radius: 8px;
+  scrollbar-width: thin;
+}
+.table-wrap table.tech { min-width: 640px; border: none; }
+.table-wrap table.tech th:first-child { position: sticky; right: 0; z-index: 1; }
+.table-wrap table.tech tbody th:first-child { background: #0d2c50; }
+.table-wrap table.tech thead th:first-child { background: #113456; }
+table.tech th, table.tech td { line-height: 1.75; }
+@media (max-width: 767px) {
+  table.tech { font-size: 0.82rem; }
+  table.tech th, table.tech td { padding: 0.65rem 0.7rem; }
+  .table-wrap::after {
+    content: "← اسحب أفقياً لعرض الجدول كاملاً";
+    display: block;
+    position: sticky;
+    right: 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    padding: 0.4rem 0.7rem;
+    background: rgba(8, 33, 61, 0.9);
+  }
+}
+
+/* --- Timeline readability --- */
+.tl { padding-right: 1.5rem; }
+.tl-dot { right: -2.05rem; }
+@media (min-width: 768px) { .tl { padding-right: 1.9rem; } .tl-dot { right: -2.45rem; } }
+.tl-item h5 { line-height: 1.55; }
+.tl-item p { font-size: 0.9rem; line-height: 1.8; }
+.tl-item .time { display: inline-block; margin-bottom: 0.25rem; }
+
+/* --- Schematic: node descriptions always visible (touch has no hover) --- */
+.snode .d { display: block; }
+.snode { min-width: 120px; }
+@media (max-width: 640px) {
+  .snode { flex: 1 1 44%; min-width: 0; padding: 0.9rem 0.7rem; }
+  .snode .t { font-size: 0.88rem; }
+  .snode .d { font-size: 0.68rem; }
+  .sarrow { display: none; }
+  .schem-row { display: grid; grid-template-columns: 1fr 1fr; }
+}
+
+/* --- Deep-layers note under the hero schematic --- */
+.layers-note { display: flex; flex-direction: column; gap: 0.55rem; }
+.layers-note li {
+  list-style: none;
+  font-size: 0.84rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  padding: 0.55rem 0.8rem;
+  border-right: 2px solid var(--cyan);
+  background: rgba(105, 211, 255, 0.06);
+  border-radius: 0 6px 6px 0;
+}
+.layers-note li b { color: #fff; font-weight: 700; }
+.layers-note .node-ref {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--redline);
+  unicode-bidi: isolate;
+  direction: ltr;
+  display: inline-block;
+}
+
+/* --- Accordion: don't clip long scripts --- */
+.acc.open .acc-body { max-height: 3000px; }
+@media (max-width: 640px) {
+  .acc-head { padding: 0.95rem 1rem; }
+  .acc-head .lbl { font-size: 0.92rem; line-height: 1.5; }
+  .acc-body-in { padding: 1rem; }
+  .step { font-size: 0.78rem; }
+}
+
+/* --- Charts breathe on phones --- */
+@media (max-width: 640px) {
+  .chart-card { height: 300px; padding: 1.1rem; }
+}
+
+/* --- Metrics & checklist wrap cleanly --- */
+.metric { flex-wrap: wrap; }
+.metric > div { min-width: 0; }
+@media (max-width: 480px) {
+  .metric { align-items: flex-start; }
+  .metric span.val { font-size: 0.92rem; }
+}
+.check-item p { line-height: 1.75; }
+
+/* --- Touch targets --- */
+.mobile-toggle, .mobile-menu .close-btn { width: 44px; height: 44px; }
+.btn { min-height: 48px; }
+.navlist a { min-height: 44px; }
+.acc-head { min-height: 48px; }
+
+/* --- Mobile menu polish --- */
+.mobile-bar { padding: 0.75rem 1rem; }
+.mobile-menu { padding: 1.25rem 1rem 3rem; }
+
+/* --- Focus visibility (keyboard users) --- */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --- Disable hover-only motion on touch devices --- */
+@media (hover: none) {
+  .panel:hover, .paper:hover, .chart-card:hover, .metric:hover,
+  .check-item:hover, .navlist a:hover, .flayer:hover, .snode:hover {
+    transform: none;
+    box-shadow: inherit;
+  }
+}
+
+/* --- Long words / URLs never overflow --- */
+p, li, td, th, h1, h2, h3, h4, h5 { overflow-wrap: break-word; }
+
+/* --- Heading semantics kept, visual styles preserved --- */
+.mobile-bar .mb-title { font-family: "Tajawal", sans-serif; font-size: 1.05rem; font-weight: 800; color: #fff; }
+.mobile-bar .mb-title span { color: var(--redline); }
+.brand .brand-title { font-family: "Tajawal", sans-serif; font-size: 1.35rem; font-weight: 900; line-height: 1.3; color: #fff; margin: 0; }
+.brand .brand-title span { color: var(--redline); }
+.hero h1 { font-size: clamp(1.85rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.22; margin-bottom: 1.2rem; opacity: 0; animation: fadeUp 0.7s var(--ease) 0.15s forwards; }
+.hero h1 .accent { color: var(--cyan); }
+.hero h1 .accent2 { color: var(--redline); }
+.hero p.lede { font-size: 1rem; line-height: 1.9; margin-bottom: 2rem; }
+@media (min-width: 768px) { .hero p.lede { font-size: 1.08rem; margin-bottom: 2.6rem; } }
+@media (max-width: 640px) { .hero { padding: 0.5rem 0 2rem; } }
+
+/* --- Schematic must never overflow horizontally on small screens --- */
+@media (max-width: 900px) {
+  .hero .panel { overflow-x: hidden !important; }
+  .schematic { width: 100%; min-width: 0; }
+  .schem-row { width: 100%; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .snode { min-width: 0; }
+}
+@media (max-width: 520px) {
+  .schem-row { grid-template-columns: minmax(0, 1fr); }
+}
+@media (min-width: 901px) { .schematic { min-width: 760px; } }
+@media (max-width: 900px) {
+  .schematic { min-width: 0 !important; width: 100% !important; }
+  .snode { max-width: 100%; }
+}
