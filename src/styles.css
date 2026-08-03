@@ -493,3 +493,14 @@ p, li, td, th, h1, h2, h3, h4, h5 { overflow-wrap: break-word; }
 .hero p.lede { font-size: 1rem; line-height: 1.9; margin-bottom: 2rem; }
 @media (min-width: 768px) { .hero p.lede { font-size: 1.08rem; margin-bottom: 2.6rem; } }
 @media (max-width: 640px) { .hero { padding: 0.5rem 0 2rem; } }
+
+/* --- Schematic must never overflow horizontally on small screens --- */
+@media (max-width: 900px) {
+  .hero .panel { overflow-x: hidden !important; }
+  .schematic { width: 100%; min-width: 0; }
+  .schem-row { width: 100%; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .snode { min-width: 0; }
+}
+@media (max-width: 520px) {
+  .schem-row { grid-template-columns: minmax(0, 1fr); }
+}
