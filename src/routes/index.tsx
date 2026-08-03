@@ -1311,6 +1311,9 @@ function BlueprintPage() {
             </div>
           </section>
 
+          <Sheet14 />
+
+
           <div className="foot">DWG SET — CONTENT-TO-CASH ENGINE · REV D · نسخة موسّعة</div>
         </main>
       </div>
