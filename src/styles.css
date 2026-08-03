@@ -504,3 +504,4 @@ p, li, td, th, h1, h2, h3, h4, h5 { overflow-wrap: break-word; }
 @media (max-width: 520px) {
   .schem-row { grid-template-columns: minmax(0, 1fr); }
 }
+@media (min-width: 901px) { .schematic { min-width: 760px; } }
