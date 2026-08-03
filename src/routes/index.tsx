@@ -242,7 +242,7 @@ function BlueprintPage() {
                 كل عقدة مشروحة بوظيفتها تحت اسمها. هذه هي السلسلة الكاملة التي تُبنى عليها كل
                 لوحة لاحقة في هذا الدليل.
               </p>
-              <div className="schematic" style={{ minWidth: 760 }}>
+              <div className="schematic">
                 <div className="schem-row">
                   <div className="snode">
                     <span className="n">NODE 01</span>
