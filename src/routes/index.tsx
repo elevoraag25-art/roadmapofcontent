@@ -286,11 +286,22 @@ function BlueprintPage() {
                   <i className="fas fa-layer-group" style={{ color: "var(--cyan)" }}></i> طبقات
                   التعميق (اللوحات 08-13)
                 </h5>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                  <span className="badge">الزوايا (08) + بنك الخطافات (11) → تُغذّي عقدة الخطاف NODE 02</span>
-                  <span className="badge">علم الفيروسية (09) → يُعمّق عقدة الخوارزمية NODE 01 والاحتفاظ NODE 03</span>
-                  <span className="badge">الإعلانات (10) والرافعة (12) → يفتحان مصدر كاش موازٍ لعقدة NODE 08</span>
-                </div>
+                <ul className="layers-note">
+                  <li>
+                    <b>الزوايا (08) + بنك الخطافات (11)</b> → تُغذّي عقدة الخطاف{" "}
+                    <span className="node-ref">NODE 02</span>
+                  </li>
+                  <li>
+                    <b>علم الفيروسية (09)</b> → يُعمّق عقدة الخوارزمية{" "}
+                    <span className="node-ref">NODE 01</span> والاحتفاظ{" "}
+                    <span className="node-ref">NODE 03</span>
+                  </li>
+                  <li>
+                    <b>الإعلانات (10) والرافعة (12)</b> → يفتحان مصدر كاش موازٍ لعقدة{" "}
+                    <span className="node-ref">NODE 08</span>
+                  </li>
+                </ul>
+
               </div>
             </div>
 
