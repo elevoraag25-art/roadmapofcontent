@@ -3,7 +3,7 @@ export function Sheet11() {
     <section className="sheet" id="s11">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 11 / 14</span>
+          <span className="sheet-num">SHEET 11 / 21</span>
           <h3>بنك الخطافات الموسّع — Swipe File</h3>
           <p className="sheet-sub">
             افتح هاد اللوحة قبل كل تصوير أو كل إعداد إعلان، بدل ما تفكّر فالخطاف من الصفر كل مرة.

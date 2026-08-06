@@ -3,7 +3,7 @@ export function Sheet09() {
     <section className="sheet" id="s09">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 09 / 14</span>
+          <span className="sheet-num">SHEET 09 / 21</span>
           <h3>علم الفيروسية بحسب Kane Kallaway — القياس بدل الحظ</h3>
           <p className="sheet-sub">
             منهجية نبيل محبوب تشرح "كيف تصنع" الفيديو، وهاد اللوحة كتشرح "كيفاش تقيس وتحلل" نجاحه

@@ -1,9 +1,9 @@
-export function Sheet14() {
+export function Sheet21() {
   return (
-    <section className="sheet" id="s14">
+    <section className="sheet" id="s21">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 14 / 14</span>
+          <span className="sheet-num">SHEET 21 / 21</span>
           <h3>الملحق — صندوق الأدوات ومسرد المصطلحات</h3>
           <p className="sheet-sub">
             كل الاختصارات والأدوات المذكورة عبر اللوحات، في مكان واحد للرجوع السريع.

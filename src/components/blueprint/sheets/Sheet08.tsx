@@ -3,7 +3,7 @@ export function Sheet08() {
     <section className="sheet" id="s08">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 08 / 14</span>
+          <span className="sheet-num">SHEET 08 / 21</span>
           <h3>مصفوفة الزوايا التسويقية والبيعية — Angle Engine</h3>
           <p className="sheet-sub">
             نفس الفكرة يمكن أن تُقال بعشر زوايا مختلفة. الزاوية هي "الباب" الذي تدخل منه للفكرة،
