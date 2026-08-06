@@ -3,7 +3,7 @@ export function Sheet06() {
     <section className="sheet" id="s06">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 06 / 14</span>
+          <span className="sheet-num">SHEET 06 / 21</span>
           <h3>مصنع الأفكار — مصفوفة المحتوى اللانهائية</h3>
           <p className="sheet-sub">
             لا تنتظر الإلهام. ادمج "الموضوع" مع "الهيكل" لتوليد عشرات الأفكار فوراً.

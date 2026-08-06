@@ -3,7 +3,7 @@ export function Sheet05() {
     <section className="sheet" id="s05">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 05 / 14</span>
+          <span className="sheet-num">SHEET 05 / 21</span>
           <h3>قمع المبيعات والأتمتة</h3>
           <p className="sheet-sub">
             المشاهدات المجانية لا تعني أموالاً في البنك، إلا إذا كان لديك "نظام اصطياد"

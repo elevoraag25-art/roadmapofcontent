@@ -5,7 +5,7 @@ export function Sheet01() {
     <section className="sheet" id="s01">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 01 / 14</span>
+          <span className="sheet-num">SHEET 01 / 21</span>
           <h3>علم الخوارزمية — كيف تفكّر الآلة؟</h3>
           <p className="sheet-sub">
             المنصات لا تقرأ المحتوى، هي تقرأ سلوك المشاهد تجاهه. كل فعل يقوم به المشاهد يمنحك

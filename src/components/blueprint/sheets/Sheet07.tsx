@@ -3,7 +3,7 @@ export function Sheet07() {
     <section className="sheet" id="s07">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 07 / 14</span>
+          <span className="sheet-num">SHEET 07 / 21</span>
           <h3>بروتوكول التنفيذ الأسبوعي (The Factory Protocol)</h3>
           <p className="sheet-sub">
             صناعة المحتوى يومياً تؤدي للاحتراق (Burnout). اعمل بنظام الدفعات (Batching) بدل

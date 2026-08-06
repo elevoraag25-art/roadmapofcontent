@@ -3,7 +3,7 @@ export function Sheet13() {
     <section className="sheet" id="s13">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 13 / 14</span>
+          <span className="sheet-num">SHEET 13 / 21</span>
 
           <h3>الورقة المرجعية السريعة</h3>
           <p className="sheet-sub">

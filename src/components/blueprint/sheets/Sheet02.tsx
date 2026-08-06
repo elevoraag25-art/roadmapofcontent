@@ -3,7 +3,7 @@ export function Sheet02() {
     <section className="sheet" id="s02">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 02 / 14</span>
+          <span className="sheet-num">SHEET 02 / 21</span>
           <h3>ثالوث الهندسة الفيروسية — منهجية نبيل محبوب</h3>
           <p className="sheet-sub">
             ثلاث محطات متتالية: اصطياد الانتباه، منع الهروب، ثم تحويل المشاهدة إلى مشاركة.

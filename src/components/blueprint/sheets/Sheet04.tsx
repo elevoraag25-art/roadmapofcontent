@@ -5,7 +5,7 @@ export function Sheet04() {
     <section className="sheet" id="s04">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 04 / 14</span>
+          <span className="sheet-num">SHEET 04 / 21</span>
           <h3>تشريح السكريبت وسيكولوجية المونتاج</h3>
           <p className="sheet-sub">لا تترك شيئاً للصدفة. الفيديوهات تُهندَس، ولا تُرتجل.</p>
         </div>

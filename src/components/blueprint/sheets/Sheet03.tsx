@@ -3,7 +3,7 @@ export function Sheet03() {
     <section className="sheet" id="s03">
       <div className="sheet-head">
         <div className="sheet-title-wrap">
-          <span className="sheet-num">SHEET 03 / 14</span>
+          <span className="sheet-num">SHEET 03 / 21</span>
           <h3>معادلة العرض الذي لا يقاوم — أليكس هرموزي</h3>
           <p className="sheet-sub">
             إذا كان منتجك "سلعة عادية" (Commodity)، ستضطر لخفض السعر لتبيع. هرموزي يعلّمك كيف
