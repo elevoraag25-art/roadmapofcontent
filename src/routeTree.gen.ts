@@ -9,8 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ReferenceRouteImport } from './routes/reference'
+import { Route as ProductionRouteImport } from './routes/production'
+import { Route as OrganicRouteImport } from './routes/organic'
+import { Route as IdeasRouteImport } from './routes/ideas'
+import { Route as ConversionRouteImport } from './routes/conversion'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ReferenceRoute = ReferenceRouteImport.update({
+  id: '/reference',
+  path: '/reference',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductionRoute = ProductionRouteImport.update({
+  id: '/production',
+  path: '/production',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganicRoute = OrganicRouteImport.update({
+  id: '/organic',
+  path: '/organic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IdeasRoute = IdeasRouteImport.update({
+  id: '/ideas',
+  path: '/ideas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConversionRoute = ConversionRouteImport.update({
+  id: '/conversion',
+  path: '/conversion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +49,96 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/conversion': typeof ConversionRoute
+  '/ideas': typeof IdeasRoute
+  '/organic': typeof OrganicRoute
+  '/production': typeof ProductionRoute
+  '/reference': typeof ReferenceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/conversion': typeof ConversionRoute
+  '/ideas': typeof IdeasRoute
+  '/organic': typeof OrganicRoute
+  '/production': typeof ProductionRoute
+  '/reference': typeof ReferenceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/conversion': typeof ConversionRoute
+  '/ideas': typeof IdeasRoute
+  '/organic': typeof OrganicRoute
+  '/production': typeof ProductionRoute
+  '/reference': typeof ReferenceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/conversion'
+    | '/ideas'
+    | '/organic'
+    | '/production'
+    | '/reference'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/conversion' | '/ideas' | '/organic' | '/production' | '/reference'
+  id:
+    | '__root__'
+    | '/'
+    | '/conversion'
+    | '/ideas'
+    | '/organic'
+    | '/production'
+    | '/reference'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConversionRoute: typeof ConversionRoute
+  IdeasRoute: typeof IdeasRoute
+  OrganicRoute: typeof OrganicRoute
+  ProductionRoute: typeof ProductionRoute
+  ReferenceRoute: typeof ReferenceRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reference': {
+      id: '/reference'
+      path: '/reference'
+      fullPath: '/reference'
+      preLoaderRoute: typeof ReferenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/production': {
+      id: '/production'
+      path: '/production'
+      fullPath: '/production'
+      preLoaderRoute: typeof ProductionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organic': {
+      id: '/organic'
+      path: '/organic'
+      fullPath: '/organic'
+      preLoaderRoute: typeof OrganicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ideas': {
+      id: '/ideas'
+      path: '/ideas'
+      fullPath: '/ideas'
+      preLoaderRoute: typeof IdeasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conversion': {
+      id: '/conversion'
+      path: '/conversion'
+      fullPath: '/conversion'
+      preLoaderRoute: typeof ConversionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +151,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConversionRoute: ConversionRoute,
+  IdeasRoute: IdeasRoute,
+  OrganicRoute: OrganicRoute,
+  ProductionRoute: ProductionRoute,
+  ReferenceRoute: ReferenceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
