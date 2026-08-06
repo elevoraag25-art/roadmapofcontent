@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Fragment } from "react";
 import { BlueprintLayout } from "@/components/blueprint/BlueprintLayout";
 import { SECTIONS } from "@/components/blueprint/sections";
 
@@ -62,14 +63,14 @@ function BlueprintHome() {
                 ["NODE 03", "الاحتفاظ", "حلقات مفتوحة + قطع كل 3s"],
                 ["NODE 04", "العاطفة", "تحويل المشاهدة إلى مشاركة"],
               ].map(([n, t, d], i) => (
-                <>
-                  {i > 0 && <div className="sarrow" key={`a${n}`}>←</div>}
-                  <div className="snode" key={n}>
+                <Fragment key={n}>
+                  {i > 0 && <div className="sarrow">←</div>}
+                  <div className="snode">
                     <span className="n">{n}</span>
                     <span className="t">{t}</span>
                     <span className="d">{d}</span>
                   </div>
-                </>
+                </Fragment>
               ))}
             </div>
             <div className="schem-row">
@@ -79,14 +80,14 @@ function BlueprintHome() {
                 ["NODE 06", "قمع البيع", "TOFU → MOFU → BOFU"],
                 ["NODE 05", "الأتمتة", "تعليق → DM تلقائي → Lead"],
               ].map(([n, t, d], i) => (
-                <>
-                  {i > 0 && <div className="sarrow" key={`a${n}`}>←</div>}
-                  <div className="snode" key={n}>
+                <Fragment key={n}>
+                  {i > 0 && <div className="sarrow">←</div>}
+                  <div className="snode">
                     <span className="n">{n}</span>
                     <span className="t">{t}</span>
                     <span className="d">{d}</span>
                   </div>
-                </>
+                </Fragment>
               ))}
             </div>
           </div>
