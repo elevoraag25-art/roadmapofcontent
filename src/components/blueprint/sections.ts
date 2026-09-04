@@ -54,6 +54,21 @@ export const SECTIONS: SectionMeta[] = [
     ],
   },
   {
+    slug: "/strategy",
+    title: "الاستراتيجية والعلامة",
+    short: "الاستراتيجية",
+    emoji: "🧭",
+    icon: "fa-compass",
+    desc: "التموضع، قوالب الفيديو، كتابة المحتوى الإعلاني، أنماط القمع والعروض، وخريطة القنوات.",
+    sheets: [
+      { id: "s22", code: "22", label: "العلامة والتموضع", icon: "fa-fingerprint" },
+      { id: "s23", code: "23", label: "كتالوج أشكال الفيديوهات", icon: "fa-film" },
+      { id: "s24", code: "24", label: "محرك كتابة الإعلان", icon: "fa-pen-fancy" },
+      { id: "s25", code: "25", label: "أنماط القمع والعروض", icon: "fa-filter-circle-dollar" },
+      { id: "s26", code: "26", label: "خريطة قنوات التسويق", icon: "fa-diagram-project" },
+    ],
+  },
+  {
     slug: "/organic",
     title: "الترافيك العضوي",
     short: "الترافيك العضوي",
