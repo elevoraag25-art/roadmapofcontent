@@ -33,7 +33,7 @@ export const Route = createFileRoute("/reference")({
 function ReferencePage() {
   return (
     <BlueprintLayout currentSlug="/reference" section={SECTION}>
-      <SectionHead section={SECTION} index={5} />
+      <SectionHead section={SECTION} index={6} />
       <Sheet13 />
       <Sheet21 />
     </BlueprintLayout>

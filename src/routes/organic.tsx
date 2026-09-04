@@ -37,7 +37,7 @@ export const Route = createFileRoute("/organic")({
 function OrganicPage() {
   return (
     <BlueprintLayout currentSlug="/organic" section={SECTION}>
-      <SectionHead section={SECTION} index={4} />
+      <SectionHead section={SECTION} index={5} />
       <Sheet15 />
       <Sheet16 />
       <Sheet17 />
