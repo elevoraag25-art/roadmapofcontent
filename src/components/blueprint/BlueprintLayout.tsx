@@ -177,7 +177,7 @@ export function BlueprintLayout({
             <Link to="/" className="brand-title" style={{ display: "block" }}>
               مخطط <span>الهندسة</span> الفيروسية
             </Link>
-            <span className="tagline">21 لوحة · 5 أقسام · من الفكرة إلى الكاش</span>
+            <span className="tagline">26 درساً · 6 أقسام · من الفكرة إلى الكاش</span>
           </div>
           <p className="navlist-label">فهرس اللوحات</p>
           <NavList currentSlug={currentSlug} />
