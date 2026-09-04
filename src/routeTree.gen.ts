@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StrategyRouteImport } from './routes/strategy'
 import { Route as ReferenceRouteImport } from './routes/reference'
 import { Route as ProductionRouteImport } from './routes/production'
 import { Route as OrganicRouteImport } from './routes/organic'
@@ -16,6 +17,11 @@ import { Route as IdeasRouteImport } from './routes/ideas'
 import { Route as ConversionRouteImport } from './routes/conversion'
 import { Route as IndexRouteImport } from './routes/index'
 
+const StrategyRoute = StrategyRouteImport.update({
+  id: '/strategy',
+  path: '/strategy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReferenceRoute = ReferenceRouteImport.update({
   id: '/reference',
   path: '/reference',
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/organic': typeof OrganicRoute
   '/production': typeof ProductionRoute
   '/reference': typeof ReferenceRoute
+  '/strategy': typeof StrategyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/organic': typeof OrganicRoute
   '/production': typeof ProductionRoute
   '/reference': typeof ReferenceRoute
+  '/strategy': typeof StrategyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/organic': typeof OrganicRoute
   '/production': typeof ProductionRoute
   '/reference': typeof ReferenceRoute
+  '/strategy': typeof StrategyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,8 +90,16 @@ export interface FileRouteTypes {
     | '/organic'
     | '/production'
     | '/reference'
+    | '/strategy'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/conversion' | '/ideas' | '/organic' | '/production' | '/reference'
+  to:
+    | '/'
+    | '/conversion'
+    | '/ideas'
+    | '/organic'
+    | '/production'
+    | '/reference'
+    | '/strategy'
   id:
     | '__root__'
     | '/'
@@ -91,6 +108,7 @@ export interface FileRouteTypes {
     | '/organic'
     | '/production'
     | '/reference'
+    | '/strategy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -100,10 +118,18 @@ export interface RootRouteChildren {
   OrganicRoute: typeof OrganicRoute
   ProductionRoute: typeof ProductionRoute
   ReferenceRoute: typeof ReferenceRoute
+  StrategyRoute: typeof StrategyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/strategy': {
+      id: '/strategy'
+      path: '/strategy'
+      fullPath: '/strategy'
+      preLoaderRoute: typeof StrategyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reference': {
       id: '/reference'
       path: '/reference'
@@ -156,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrganicRoute: OrganicRoute,
   ProductionRoute: ProductionRoute,
   ReferenceRoute: ReferenceRoute,
+  StrategyRoute: StrategyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
