@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "مخطط الهندسة الفيروسية — من الفكرة إلى الكاش" },
       {
         property: "og:description",
-        content: "26 درساً مقسّمة على 6 أقسام: الإنتاج، التحويل، الأفكار، الترافيك العضوي، والمرجع.",
+        content: "26 درساً مقسّمة على 6 أقسام: الإنتاج، التحويل، الأفكار، الاستراتيجية، الترافيك العضوي، والمرجع.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://roadmapofcontent.lovable.app/" },
