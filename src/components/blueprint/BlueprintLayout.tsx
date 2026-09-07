@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import logoAsset from "@/assets/roadmap-logo.png.asset.json";
 import { SECTIONS, type SectionMeta } from "./sections";
 
 function NavList({ currentSlug, onNavigate }: { currentSlug?: string; onNavigate?: () => void }) {
@@ -147,6 +148,7 @@ export function BlueprintLayout({
 
       <div className="mobile-bar">
         <div className="mb-title">
+          <img src={logoAsset.url} alt="" className="mb-logo" />
           مخطط <span>الفيرال</span>
         </div>
         <button
@@ -173,11 +175,14 @@ export function BlueprintLayout({
       <div className="shell">
         <nav className="sidebar">
           <div className="brand">
+            <Link to="/" className="brand-logo" aria-label="الصفحة الرئيسية">
+              <img src={logoAsset.url} alt="Roadmap of Content" />
+            </Link>
             <span className="mono">DWG SET — CONTENT ENGINE</span>
             <Link to="/" className="brand-title" style={{ display: "block" }}>
               مخطط <span>الهندسة</span> الفيروسية
             </Link>
-            <span className="tagline">26 درساً · 6 أقسام · من الفكرة إلى الكاش</span>
+            <span className="tagline">34 درساً · 7 أقسام · من الفكرة إلى الكاش</span>
           </div>
           <p className="navlist-label">فهرس اللوحات</p>
           <NavList currentSlug={currentSlug} />
