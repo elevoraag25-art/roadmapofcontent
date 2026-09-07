@@ -55,11 +55,12 @@ export function Sheet32() {
           ],
         ].map(([t, d], i) => (
           <div className="tl-item" key={t}>
-            <span className="tl-time">0{i + 1}</span>
-            <div className="tl-body">
-              <b>{t}</b>
-              <p>{d}</p>
-            </div>
+            <span className="tl-dot" style={{ background: "var(--cyan)" }}></span>
+            <h5>
+              <span className="time">STEP 0{i + 1}</span>
+              {t}
+            </h5>
+            <p>{d}</p>
           </div>
         ))}
       </div>
