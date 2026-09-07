@@ -148,6 +148,7 @@ export function BlueprintLayout({
 
       <div className="mobile-bar">
         <div className="mb-title">
+          <img src={logoAsset.url} alt="" className="mb-logo" />
           مخطط <span>الفيرال</span>
         </div>
         <button
