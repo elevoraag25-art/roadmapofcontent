@@ -15,6 +15,7 @@ import { Route as ProductionRouteImport } from './routes/production'
 import { Route as OrganicRouteImport } from './routes/organic'
 import { Route as IdeasRouteImport } from './routes/ideas'
 import { Route as ConversionRouteImport } from './routes/conversion'
+import { Route as BrandRouteImport } from './routes/brand'
 import { Route as IndexRouteImport } from './routes/index'
 
 const StrategyRoute = StrategyRouteImport.update({
@@ -47,6 +48,11 @@ const ConversionRoute = ConversionRouteImport.update({
   path: '/conversion',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrandRoute = BrandRouteImport.update({
+  id: '/brand',
+  path: '/brand',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -55,6 +61,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/brand': typeof BrandRoute
   '/conversion': typeof ConversionRoute
   '/ideas': typeof IdeasRoute
   '/organic': typeof OrganicRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/brand': typeof BrandRoute
   '/conversion': typeof ConversionRoute
   '/ideas': typeof IdeasRoute
   '/organic': typeof OrganicRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/brand': typeof BrandRoute
   '/conversion': typeof ConversionRoute
   '/ideas': typeof IdeasRoute
   '/organic': typeof OrganicRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/brand'
     | '/conversion'
     | '/ideas'
     | '/organic'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/brand'
     | '/conversion'
     | '/ideas'
     | '/organic'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/brand'
     | '/conversion'
     | '/ideas'
     | '/organic'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BrandRoute: typeof BrandRoute
   ConversionRoute: typeof ConversionRoute
   IdeasRoute: typeof IdeasRoute
   OrganicRoute: typeof OrganicRoute
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConversionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brand': {
+      id: '/brand'
+      path: '/brand'
+      fullPath: '/brand'
+      preLoaderRoute: typeof BrandRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BrandRoute: BrandRoute,
   ConversionRoute: ConversionRoute,
   IdeasRoute: IdeasRoute,
   OrganicRoute: OrganicRoute,
