@@ -10,7 +10,7 @@ import { Sheet26 } from "@/components/blueprint/sheets/Sheet26";
 
 const SECTION = SECTIONS.find((s) => s.slug === "/strategy")!;
 
-export const Route = createFileRoute("/strategy")({
+export const Route = createFileRoute("/_authenticated/strategy")({
   component: StrategyPage,
   head: () => ({
     meta: [

@@ -9,7 +9,7 @@ import { Sheet04 } from "@/components/blueprint/sheets/Sheet04";
 
 const SECTION = SECTIONS.find((s) => s.slug === "/production")!;
 
-export const Route = createFileRoute("/production")({
+export const Route = createFileRoute("/_authenticated/production")({
   component: ProductionPage,
   head: () => ({
     meta: [

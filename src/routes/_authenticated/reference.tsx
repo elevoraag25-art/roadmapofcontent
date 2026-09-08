@@ -7,7 +7,7 @@ import { Sheet21 } from "@/components/blueprint/sheets/Sheet21";
 
 const SECTION = SECTIONS.find((s) => s.slug === "/reference")!;
 
-export const Route = createFileRoute("/reference")({
+export const Route = createFileRoute("/_authenticated/reference")({
   component: ReferencePage,
   head: () => ({
     meta: [
