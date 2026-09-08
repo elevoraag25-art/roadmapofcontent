@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedStrategyRouteImport } from './routes/_authenticated/strategy'
@@ -19,6 +21,16 @@ import { Route as AuthenticatedIdeasRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedConversionRouteImport } from './routes/_authenticated/conversion'
 import { Route as AuthenticatedBrandRouteImport } from './routes/_authenticated/brand'
 
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
@@ -66,6 +78,8 @@ const AuthenticatedBrandRoute = AuthenticatedBrandRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/auth': typeof AuthRoute
   '/brand': typeof AuthenticatedBrandRoute
   '/conversion': typeof AuthenticatedConversionRoute
   '/ideas': typeof AuthenticatedIdeasRoute
@@ -76,6 +90,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/auth': typeof AuthRoute
   '/brand': typeof AuthenticatedBrandRoute
   '/conversion': typeof AuthenticatedConversionRoute
   '/ideas': typeof AuthenticatedIdeasRoute
@@ -88,6 +104,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/account': typeof AccountRoute
+  '/auth': typeof AuthRoute
   '/_authenticated/brand': typeof AuthenticatedBrandRoute
   '/_authenticated/conversion': typeof AuthenticatedConversionRoute
   '/_authenticated/ideas': typeof AuthenticatedIdeasRoute
@@ -100,6 +118,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/account'
+    | '/auth'
     | '/brand'
     | '/conversion'
     | '/ideas'
@@ -110,6 +130,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/account'
+    | '/auth'
     | '/brand'
     | '/conversion'
     | '/ideas'
@@ -121,6 +143,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/account'
+    | '/auth'
     | '/_authenticated/brand'
     | '/_authenticated/conversion'
     | '/_authenticated/ideas'
@@ -133,10 +157,26 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AccountRoute: typeof AccountRoute
+  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
@@ -229,6 +269,8 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AccountRoute: AccountRoute,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
