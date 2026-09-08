@@ -13,7 +13,7 @@ import { Sheet34 } from "@/components/blueprint/sheets/Sheet34";
 
 const SECTION = SECTIONS.find((s) => s.slug === "/brand")!;
 
-export const Route = createFileRoute("/brand")({
+export const Route = createFileRoute("/_authenticated/brand")({
   component: BrandPage,
   head: () => ({
     meta: [

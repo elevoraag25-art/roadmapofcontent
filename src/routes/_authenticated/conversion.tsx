@@ -9,7 +9,7 @@ import { Sheet12 } from "@/components/blueprint/sheets/Sheet12";
 
 const SECTION = SECTIONS.find((s) => s.slug === "/conversion")!;
 
-export const Route = createFileRoute("/conversion")({
+export const Route = createFileRoute("/_authenticated/conversion")({
   component: ConversionPage,
   head: () => ({
     meta: [

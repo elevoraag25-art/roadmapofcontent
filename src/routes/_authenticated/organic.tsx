@@ -11,7 +11,7 @@ import { Sheet20 } from "@/components/blueprint/sheets/Sheet20";
 
 const SECTION = SECTIONS.find((s) => s.slug === "/organic")!;
 
-export const Route = createFileRoute("/organic")({
+export const Route = createFileRoute("/_authenticated/organic")({
   component: OrganicPage,
   head: () => ({
     meta: [
