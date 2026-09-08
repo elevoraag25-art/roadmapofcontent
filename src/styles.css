@@ -550,3 +550,5 @@ p, li, td, th, h1, h2, h3, h4, h5 { overflow-wrap: break-word; }
 .brand-logo:hover img { transform: translateY(-2px) scale(1.03); }
 .mobile-bar .mb-title { display: flex; align-items: center; gap: 0.5rem; }
 .mb-logo { width: 26px; height: 26px; object-fit: cover; object-position: top center; border-radius: 6px; }
+.brand-logo img { border-radius: 12px; border: 1px solid rgba(148,205,255,0.18); }
+@media (max-width: 900px) { .brand-logo { width: 66px; } }
