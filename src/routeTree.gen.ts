@@ -9,86 +9,86 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as StrategyRouteImport } from './routes/strategy'
-import { Route as ReferenceRouteImport } from './routes/reference'
-import { Route as ProductionRouteImport } from './routes/production'
-import { Route as OrganicRouteImport } from './routes/organic'
-import { Route as IdeasRouteImport } from './routes/ideas'
-import { Route as ConversionRouteImport } from './routes/conversion'
-import { Route as BrandRouteImport } from './routes/brand'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedStrategyRouteImport } from './routes/_authenticated/strategy'
+import { Route as AuthenticatedReferenceRouteImport } from './routes/_authenticated/reference'
+import { Route as AuthenticatedProductionRouteImport } from './routes/_authenticated/production'
+import { Route as AuthenticatedOrganicRouteImport } from './routes/_authenticated/organic'
+import { Route as AuthenticatedIdeasRouteImport } from './routes/_authenticated/ideas'
+import { Route as AuthenticatedConversionRouteImport } from './routes/_authenticated/conversion'
+import { Route as AuthenticatedBrandRouteImport } from './routes/_authenticated/brand'
 
-const StrategyRoute = StrategyRouteImport.update({
-  id: '/strategy',
-  path: '/strategy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ReferenceRoute = ReferenceRouteImport.update({
-  id: '/reference',
-  path: '/reference',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProductionRoute = ProductionRouteImport.update({
-  id: '/production',
-  path: '/production',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OrganicRoute = OrganicRouteImport.update({
-  id: '/organic',
-  path: '/organic',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IdeasRoute = IdeasRouteImport.update({
-  id: '/ideas',
-  path: '/ideas',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ConversionRoute = ConversionRouteImport.update({
-  id: '/conversion',
-  path: '/conversion',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BrandRoute = BrandRouteImport.update({
-  id: '/brand',
-  path: '/brand',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedStrategyRoute = AuthenticatedStrategyRouteImport.update({
+  id: '/_authenticated/strategy',
+  path: '/strategy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedReferenceRoute = AuthenticatedReferenceRouteImport.update({
+  id: '/_authenticated/reference',
+  path: '/reference',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedProductionRoute = AuthenticatedProductionRouteImport.update({
+  id: '/_authenticated/production',
+  path: '/production',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedOrganicRoute = AuthenticatedOrganicRouteImport.update({
+  id: '/_authenticated/organic',
+  path: '/organic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedIdeasRoute = AuthenticatedIdeasRouteImport.update({
+  id: '/_authenticated/ideas',
+  path: '/ideas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedConversionRoute = AuthenticatedConversionRouteImport.update({
+  id: '/_authenticated/conversion',
+  path: '/conversion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedBrandRoute = AuthenticatedBrandRouteImport.update({
+  id: '/_authenticated/brand',
+  path: '/brand',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/brand': typeof BrandRoute
-  '/conversion': typeof ConversionRoute
-  '/ideas': typeof IdeasRoute
-  '/organic': typeof OrganicRoute
-  '/production': typeof ProductionRoute
-  '/reference': typeof ReferenceRoute
-  '/strategy': typeof StrategyRoute
+  '/brand': typeof AuthenticatedBrandRoute
+  '/conversion': typeof AuthenticatedConversionRoute
+  '/ideas': typeof AuthenticatedIdeasRoute
+  '/organic': typeof AuthenticatedOrganicRoute
+  '/production': typeof AuthenticatedProductionRoute
+  '/reference': typeof AuthenticatedReferenceRoute
+  '/strategy': typeof AuthenticatedStrategyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/brand': typeof BrandRoute
-  '/conversion': typeof ConversionRoute
-  '/ideas': typeof IdeasRoute
-  '/organic': typeof OrganicRoute
-  '/production': typeof ProductionRoute
-  '/reference': typeof ReferenceRoute
-  '/strategy': typeof StrategyRoute
+  '/brand': typeof AuthenticatedBrandRoute
+  '/conversion': typeof AuthenticatedConversionRoute
+  '/ideas': typeof AuthenticatedIdeasRoute
+  '/organic': typeof AuthenticatedOrganicRoute
+  '/production': typeof AuthenticatedProductionRoute
+  '/reference': typeof AuthenticatedReferenceRoute
+  '/strategy': typeof AuthenticatedStrategyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/brand': typeof BrandRoute
-  '/conversion': typeof ConversionRoute
-  '/ideas': typeof IdeasRoute
-  '/organic': typeof OrganicRoute
-  '/production': typeof ProductionRoute
-  '/reference': typeof ReferenceRoute
-  '/strategy': typeof StrategyRoute
+  '/_authenticated/brand': typeof AuthenticatedBrandRoute
+  '/_authenticated/conversion': typeof AuthenticatedConversionRoute
+  '/_authenticated/ideas': typeof AuthenticatedIdeasRoute
+  '/_authenticated/organic': typeof AuthenticatedOrganicRoute
+  '/_authenticated/production': typeof AuthenticatedProductionRoute
+  '/_authenticated/reference': typeof AuthenticatedReferenceRoute
+  '/_authenticated/strategy': typeof AuthenticatedStrategyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -114,77 +114,28 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/brand'
-    | '/conversion'
-    | '/ideas'
-    | '/organic'
-    | '/production'
-    | '/reference'
-    | '/strategy'
+    | '/_authenticated/brand'
+    | '/_authenticated/conversion'
+    | '/_authenticated/ideas'
+    | '/_authenticated/organic'
+    | '/_authenticated/production'
+    | '/_authenticated/reference'
+    | '/_authenticated/strategy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BrandRoute: typeof BrandRoute
-  ConversionRoute: typeof ConversionRoute
-  IdeasRoute: typeof IdeasRoute
-  OrganicRoute: typeof OrganicRoute
-  ProductionRoute: typeof ProductionRoute
-  ReferenceRoute: typeof ReferenceRoute
-  StrategyRoute: typeof StrategyRoute
+  AuthenticatedBrandRoute: typeof AuthenticatedBrandRoute
+  AuthenticatedConversionRoute: typeof AuthenticatedConversionRoute
+  AuthenticatedIdeasRoute: typeof AuthenticatedIdeasRoute
+  AuthenticatedOrganicRoute: typeof AuthenticatedOrganicRoute
+  AuthenticatedProductionRoute: typeof AuthenticatedProductionRoute
+  AuthenticatedReferenceRoute: typeof AuthenticatedReferenceRoute
+  AuthenticatedStrategyRoute: typeof AuthenticatedStrategyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/strategy': {
-      id: '/strategy'
-      path: '/strategy'
-      fullPath: '/strategy'
-      preLoaderRoute: typeof StrategyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/reference': {
-      id: '/reference'
-      path: '/reference'
-      fullPath: '/reference'
-      preLoaderRoute: typeof ReferenceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/production': {
-      id: '/production'
-      path: '/production'
-      fullPath: '/production'
-      preLoaderRoute: typeof ProductionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/organic': {
-      id: '/organic'
-      path: '/organic'
-      fullPath: '/organic'
-      preLoaderRoute: typeof OrganicRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ideas': {
-      id: '/ideas'
-      path: '/ideas'
-      fullPath: '/ideas'
-      preLoaderRoute: typeof IdeasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/conversion': {
-      id: '/conversion'
-      path: '/conversion'
-      fullPath: '/conversion'
-      preLoaderRoute: typeof ConversionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/brand': {
-      id: '/brand'
-      path: '/brand'
-      fullPath: '/brand'
-      preLoaderRoute: typeof BrandRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -192,18 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/strategy': {
+      id: '/_authenticated/strategy'
+      path: '/strategy'
+      fullPath: '/strategy'
+      preLoaderRoute: typeof AuthenticatedStrategyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/reference': {
+      id: '/_authenticated/reference'
+      path: '/reference'
+      fullPath: '/reference'
+      preLoaderRoute: typeof AuthenticatedReferenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/production': {
+      id: '/_authenticated/production'
+      path: '/production'
+      fullPath: '/production'
+      preLoaderRoute: typeof AuthenticatedProductionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/organic': {
+      id: '/_authenticated/organic'
+      path: '/organic'
+      fullPath: '/organic'
+      preLoaderRoute: typeof AuthenticatedOrganicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/ideas': {
+      id: '/_authenticated/ideas'
+      path: '/ideas'
+      fullPath: '/ideas'
+      preLoaderRoute: typeof AuthenticatedIdeasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/conversion': {
+      id: '/_authenticated/conversion'
+      path: '/conversion'
+      fullPath: '/conversion'
+      preLoaderRoute: typeof AuthenticatedConversionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/brand': {
+      id: '/_authenticated/brand'
+      path: '/brand'
+      fullPath: '/brand'
+      preLoaderRoute: typeof AuthenticatedBrandRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BrandRoute: BrandRoute,
-  ConversionRoute: ConversionRoute,
-  IdeasRoute: IdeasRoute,
-  OrganicRoute: OrganicRoute,
-  ProductionRoute: ProductionRoute,
-  ReferenceRoute: ReferenceRoute,
-  StrategyRoute: StrategyRoute,
+  AuthenticatedBrandRoute: AuthenticatedBrandRoute,
+  AuthenticatedConversionRoute: AuthenticatedConversionRoute,
+  AuthenticatedIdeasRoute: AuthenticatedIdeasRoute,
+  AuthenticatedOrganicRoute: AuthenticatedOrganicRoute,
+  AuthenticatedProductionRoute: AuthenticatedProductionRoute,
+  AuthenticatedReferenceRoute: AuthenticatedReferenceRoute,
+  AuthenticatedStrategyRoute: AuthenticatedStrategyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
