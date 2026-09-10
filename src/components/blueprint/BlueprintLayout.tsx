@@ -238,6 +238,7 @@ export function BlueprintLayout({
           <i className="fas fa-xmark" aria-hidden="true"></i>
         </button>
         <NavList currentSlug={currentSlug} onNavigate={() => setMobileOpen(false)} />
+        <SideAuth onNavigate={() => setMobileOpen(false)} />
       </nav>
 
       <div className="shell">
