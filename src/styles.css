@@ -648,3 +648,21 @@ p, li, td, th, h1, h2, h3, h4, h5 { overflow-wrap: break-word; }
 .side-auth { margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .side-auth a { display: flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 44px; border-radius: 99px; border: 1px solid rgba(105,211,255,0.35); color: var(--cyan); font-size: 0.85rem; font-weight: 700; }
 .side-auth a:hover { background: rgba(105,211,255,0.1); }
+.side-auth-out { display: flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 44px; border-radius: 99px; border: 1px solid rgba(255,107,107,0.3); background: transparent; color: var(--redline); font-family: inherit; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: background 0.2s ease; }
+.side-auth-out:hover { background: rgba(255,107,107,0.1); }
+
+/* Home access CTA */
+.access-cta { margin: 2rem 0 0; display: grid; gap: 1rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 900px) { .access-cta { grid-template-columns: 1.4fr 1fr; } }
+.access-cta .panel { margin: 0; }
+.access-cta h4 { margin-top: 0; }
+.access-cta-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+.access-cta-actions a { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 46px; padding: 0 1.4rem; border-radius: 99px; font-weight: 800; font-size: 0.9rem; text-decoration: none; }
+.access-cta-actions a.primary { background: var(--cyan); color: #04121f; }
+.access-cta-actions a.secondary { border: 1px solid rgba(105,211,255,0.35); color: var(--cyan); }
+.access-cta-actions a:hover { filter: brightness(1.08); }
+.access-plans { display: grid; gap: 0.6rem; }
+.access-plan { padding: 0.9rem 1rem; border-radius: 12px; border: 1px solid rgba(148,205,255,0.18); background: rgba(148,205,255,0.04); }
+.access-plan b { color: #fff; display: block; }
+.access-plan span { font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; color: var(--money); }
+.access-plan small { display: block; color: var(--text-muted); font-size: 0.78rem; margin-top: 0.2rem; }
