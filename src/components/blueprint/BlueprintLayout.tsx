@@ -1,7 +1,75 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import logoAsset from "@/assets/roadmap-logo.png.asset.json";
+import { supabase } from "@/integrations/supabase/client";
 import { SECTIONS, type SectionMeta } from "./sections";
+
+function SideAuth({ onNavigate }: { onNavigate?: () => void }) {
+  const navigate = useNavigate();
+  const [state, setState] = useState<"loading" | "out" | "in">("loading");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    let alive = true;
+    const load = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (!alive) return;
+      if (!data.user) {
+        setState("out");
+        setIsAdmin(false);
+        return;
+      }
+      setState("in");
+      const { data: admin } = await supabase.rpc("has_role", {
+        _user_id: data.user.id,
+        _role: "admin",
+      });
+      if (alive) setIsAdmin(Boolean(admin));
+    };
+    load();
+    const { data: sub } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_IN" || event === "SIGNED_OUT" || event === "USER_UPDATED") load();
+    });
+    return () => {
+      alive = false;
+      sub.subscription.unsubscribe();
+    };
+  }, []);
+
+  if (state === "loading") return null;
+
+  return (
+    <div className="side-auth">
+      {state === "out" ? (
+        <Link to="/auth" onClick={onNavigate}>
+          <i className="fas fa-right-to-bracket" aria-hidden="true"></i> الدخول / إنشاء حساب
+        </Link>
+      ) : (
+        <>
+          <Link to="/account" onClick={onNavigate}>
+            <i className="fas fa-user-gear" aria-hidden="true"></i> حسابي
+          </Link>
+          {isAdmin && (
+            <Link to="/admin" onClick={onNavigate}>
+              <i className="fas fa-sliders" aria-hidden="true"></i> لوحة التحكم
+            </Link>
+          )}
+          <button
+            type="button"
+            className="side-auth-out"
+            onClick={async () => {
+              await supabase.auth.signOut();
+              onNavigate?.();
+              navigate({ to: "/", replace: true });
+            }}
+          >
+            <i className="fas fa-arrow-right-from-bracket" aria-hidden="true"></i> تسجيل الخروج
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
 
 function NavList({ currentSlug, onNavigate }: { currentSlug?: string; onNavigate?: () => void }) {
   return (
@@ -170,6 +238,7 @@ export function BlueprintLayout({
           <i className="fas fa-xmark" aria-hidden="true"></i>
         </button>
         <NavList currentSlug={currentSlug} onNavigate={() => setMobileOpen(false)} />
+        <SideAuth onNavigate={() => setMobileOpen(false)} />
       </nav>
 
       <div className="shell">
@@ -186,6 +255,7 @@ export function BlueprintLayout({
           </div>
           <p className="navlist-label">فهرس اللوحات</p>
           <NavList currentSlug={currentSlug} />
+          <SideAuth />
           <div className="side-foot">
             <span className="mono">NOTE</span>
             <p>كل لوحة مبنية على تطبيق فعلي. اقرأ باش تفهم، رجع باش تنفذ.</p>

@@ -104,7 +104,10 @@ function MembersTab() {
 
   async function patch(id: string, values: Record<string, unknown>) {
     setBusy(id);
-    await supabase.from("profiles").update(values).eq("id", id);
+    await supabase
+      .from("profiles")
+      .update(values as never)
+      .eq("id", id);
     await load();
     setBusy(null);
   }
