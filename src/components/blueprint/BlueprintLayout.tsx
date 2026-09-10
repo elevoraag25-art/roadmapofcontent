@@ -255,6 +255,7 @@ export function BlueprintLayout({
           </div>
           <p className="navlist-label">فهرس اللوحات</p>
           <NavList currentSlug={currentSlug} />
+          <SideAuth />
           <div className="side-foot">
             <span className="mono">NOTE</span>
             <p>كل لوحة مبنية على تطبيق فعلي. اقرأ باش تفهم، رجع باش تنفذ.</p>
