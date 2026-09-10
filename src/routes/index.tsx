@@ -1,7 +1,77 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { BlueprintLayout } from "@/components/blueprint/BlueprintLayout";
 import { SECTIONS } from "@/components/blueprint/sections";
+import { supabase } from "@/integrations/supabase/client";
+import { fetchPlans, type Plan } from "@/lib/membership";
+
+function AccessCta() {
+  const [plans, setPlans] = useState<Plan[]>([]);
+  const [signedIn, setSignedIn] = useState(false);
+
+  useEffect(() => {
+    fetchPlans()
+      .then(setPlans)
+      .catch(() => setPlans([]));
+    supabase.auth.getUser().then(({ data }) => setSignedIn(Boolean(data.user)));
+  }, []);
+
+  return (
+    <section className="sheet" id="access">
+      <div className="sheet-head">
+        <div className="sheet-title-wrap">
+          <span className="sheet-num">ACCESS / العضوية</span>
+          <h3>الدخول إلى الدروس</h3>
+          <p className="sheet-sub">
+            الدروس محمية بعضوية. أنشئ حسابك واملأ الفورم، ثم تُراجع الإدارة طلبك وتفتح لك الصلاحية.
+          </p>
+        </div>
+      </div>
+
+      <div className="access-cta">
+        <div className="panel">
+          <h4>
+            <i className="fas fa-unlock-keyhole" style={{ color: "var(--cyan)" }}></i> كيف تحصل على
+            الصلاحية؟
+          </h4>
+          <p>
+            1) أنشئ حسابك بالبريد أو عبر جوجل. 2) املأ خانات فورم الانضمام واختر الخطة المناسبة. 3)
+            بعد المصادقة من الإدارة تُفتح لك كل الدروس حسب المدة الممنوحة.
+          </p>
+          <div className="access-cta-actions">
+            {signedIn ? (
+              <Link to="/account" className="primary">
+                <i className="fas fa-user-gear"></i> حسابي وحالة الاشتراك
+              </Link>
+            ) : (
+              <>
+                <Link to="/auth" className="primary">
+                  <i className="fas fa-right-to-bracket"></i> إنشاء حساب / دخول
+                </Link>
+                <Link to="/auth" className="secondary">
+                  <i className="fas fa-gift"></i> جرّب 3 أيام مجاناً
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div className="access-plans">
+          {plans.map((p) => (
+            <div className="access-plan" key={p.id}>
+              <b>{p.name}</b>
+              <span>
+                {p.price > 0 ? `${p.price} ${p.currency}` : "مجاناً"}
+                {p.duration_days ? ` / ${p.duration_days} يوم` : " / مدى الحياة"}
+              </span>
+              {p.description && <small>{p.description}</small>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export const Route = createFileRoute("/")({
   component: BlueprintHome,
