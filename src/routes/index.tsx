@@ -118,6 +118,8 @@ function BlueprintHome() {
         </div>
       </section>
 
+      <AccessCta />
+
       <section className="sheet" id="map">
         <div className="sheet-head">
           <div className="sheet-title-wrap">
