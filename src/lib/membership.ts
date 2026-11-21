@@ -10,6 +10,8 @@ export type Plan = {
   is_active: boolean;
   is_trial: boolean;
   sort_order: number;
+  image_url: string | null;
+  price_description: string | null;
 };
 
 export type FormField = {
@@ -34,6 +36,7 @@ export type Profile = {
   answers: Record<string, string>;
   status: MemberStatus;
   plan_id: string | null;
+  requested_plan_id: string | null;
   access_expires_at: string | null;
   is_lifetime: boolean;
   admin_note: string | null;

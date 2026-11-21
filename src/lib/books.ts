@@ -1,0 +1,9 @@
+export const BOOKS = [
+  { id: "viral", title: "صناعة المحتوى الفيروسي", original: "VIRAL FORMULA", pages: 32, description: "الفكرة والجمهور والخطاف والاحتفاظ، ثم السكريبت والتصوير والتحليل.", chapters: [{page:1,title:"المقدمة"},{page:6,title:"فهم الانتباه والجمهور"},{page:11,title:"الخطاف"},{page:14,title:"بناء الفيديو"},{page:25,title:"التصوير والمونتاج"},{page:28,title:"التحليل والتنفيذ"}] },
+  { id: "launch", title: "من المحتوى إلى أول عميل", original: "FUNNELS · طريقك لاحتراف البيع أونلاين", pages: 15, description: "الظهور والعلامة الشخصية، الهدية المجانية، الثقة، العرض، ثم البيع.", chapters: [{page:1,title:"المقدمة"},{page:4,title:"الظهور والعلامة الشخصية"},{page:6,title:"الهدية المجانية"},{page:8,title:"بناء الثقة"},{page:9,title:"تصميم العرض"},{page:12,title:"البيع والمتابعة"}] },
+  { id: "funnels", title: "أنظمة البيع والتحويل", original: "FUNNELS THAT SELL", pages: 39, description: "رحلة العميل وأنواع الفانل وصفحات البيع والرسائل والثقة وقياس النتائج.", chapters: [{page:1,title:"المقدمة"},{page:7,title:"فهم الفانل"},{page:12,title:"رحلة العميل"},{page:20,title:"أنواع الفانل"},{page:28,title:"بناء نظام التحويل"},{page:35,title:"التشغيل والتحسين"}] },
+  { id: "sales", title: "نظام البيع أونلاين في 90 يومًا", original: "THE 90-DAY ONLINE SALES SYSTEM", pages: 101, description: "من المهارة إلى مشروع: العرض والحضور والفانل والعملاء والإطلاق والإعلانات والنمو.", chapters: [{page:1,title:"الفهرس والمقدمة"},{page:10,title:"اكتشاف المشروع"},{page:19,title:"تصميم العرض"},{page:27,title:"الحضور الرقمي"},{page:35,title:"بناء الفانل"},{page:51,title:"استكمال نظام المبيعات"}] },
+] as const;
+export type Book = (typeof BOOKS)[number];
+export type BookPage = { page: number; text: string };
+export const bookLessonId = (book: string, page: number) => `book-${book}-${page}`;

@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.5"
+    PostgrestVersion: "14.17"
   }
   public: {
     Tables: {
@@ -56,6 +56,27 @@ export type Database = {
         }
         Relationships: []
       }
+      lesson_progress: {
+        Row: {
+          completed: boolean
+          lesson_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean
+          lesson_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          completed?: boolean
+          lesson_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       plans: {
         Row: {
           created_at: string
@@ -63,10 +84,12 @@ export type Database = {
           description: string | null
           duration_days: number | null
           id: string
+          image_url: string | null
           is_active: boolean
           is_trial: boolean
           name: string
           price: number
+          price_description: string | null
           sort_order: number
           updated_at: string
         }
@@ -76,10 +99,12 @@ export type Database = {
           description?: string | null
           duration_days?: number | null
           id?: string
+          image_url?: string | null
           is_active?: boolean
           is_trial?: boolean
           name: string
           price?: number
+          price_description?: string | null
           sort_order?: number
           updated_at?: string
         }
@@ -89,10 +114,12 @@ export type Database = {
           description?: string | null
           duration_days?: number | null
           id?: string
+          image_url?: string | null
           is_active?: boolean
           is_trial?: boolean
           name?: string
           price?: number
+          price_description?: string | null
           sort_order?: number
           updated_at?: string
         }
@@ -111,6 +138,7 @@ export type Database = {
           is_lifetime: boolean
           phone: string | null
           plan_id: string | null
+          requested_plan_id: string | null
           status: Database["public"]["Enums"]["member_status"]
           submitted_at: string | null
           updated_at: string
@@ -127,6 +155,7 @@ export type Database = {
           is_lifetime?: boolean
           phone?: string | null
           plan_id?: string | null
+          requested_plan_id?: string | null
           status?: Database["public"]["Enums"]["member_status"]
           submitted_at?: string | null
           updated_at?: string
@@ -143,6 +172,7 @@ export type Database = {
           is_lifetime?: boolean
           phone?: string | null
           plan_id?: string | null
+          requested_plan_id?: string | null
           status?: Database["public"]["Enums"]["member_status"]
           submitted_at?: string | null
           updated_at?: string
@@ -151,6 +181,13 @@ export type Database = {
           {
             foreignKeyName: "profiles_plan_id_fkey"
             columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "profiles_requested_plan_id_fkey"
+            columns: ["requested_plan_id"]
             isOneToOne: false
             referencedRelation: "plans"
             referencedColumns: ["id"]

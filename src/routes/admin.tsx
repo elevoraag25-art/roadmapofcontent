@@ -1,5 +1,9 @@
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { fetchProgress, progressCount, LESSON_IDS, type ProgressRow } from "@/lib/progress";
+import { planImage, priceDescription } from "@/lib/plan-media";
+import { accessGrant, ownerCanAdminister, OWNER_ID } from "@/lib/membership-rules";
 import { supabase } from "@/integrations/supabase/client";
 import {
   accessLabel,
@@ -14,6 +18,7 @@ import {
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
+  validateSearch: (search: Record<string, unknown>): {member?:string} => typeof search["member"] === "string" ? {member:search["member"]} : {},
   beforeLoad: async () => {
     const { data, error } = await supabase.auth.getUser();
     if (error || !data.user) throw redirect({ to: "/auth" });
@@ -21,7 +26,7 @@ export const Route = createFileRoute("/admin")({
       _user_id: data.user.id,
       _role: "admin",
     });
-    if (!isAdmin) throw redirect({ to: "/account" });
+    if (!ownerCanAdminister(data.user.id, Boolean(isAdmin))) throw redirect({ to: "/account" });
     return { user: data.user };
   },
   component: AdminPage,
@@ -50,9 +55,10 @@ function AdminPage() {
     <div className="admin-wrap">
       <header className="admin-head">
         <div>
-          <span className="mono">ADMIN CONSOLE · CONTENT-TO-CASH</span>
+          <span className="mono">ELEVORA AGENCY · ADMIN</span>
           <h1>لوحة التحكم</h1>
         </div>
+        <Link to="/library" className="btn ghost">المكتبة التعليمية</Link>
         <Link to="/account" className="btn ghost">
           حسابي
         </Link>
@@ -66,9 +72,9 @@ function AdminPage() {
             ["fields", "خانات الفورم"],
           ] as [Tab, string][]
         ).map(([k, label]) => (
-          <button key={k} className={tab === k ? "on" : ""} onClick={() => setTab(k)}>
+          <Button key={k} className={tab === k ? "on" : ""} onClick={() => setTab(k)}>
             {label}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -82,6 +88,9 @@ function AdminPage() {
 /* ---------------- Members ---------------- */
 
 function MembersTab() {
+  const { member } = Route.useSearch();
+  const [progress,setProgress] = useState<ProgressRow[]>([]);
+  const [error,setError] = useState("");
   const [rows, setRows] = useState<Profile[]>([]);
   const [plans, setPlans] = useState<Plan[]>([]);
   const [filter, setFilter] = useState<MemberStatus | "all">("all");
@@ -90,42 +99,37 @@ function MembersTab() {
   const [open, setOpen] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    const [{ data }, pl] = await Promise.all([
+    const [{ data, error: loadError }, pl, pr] = await Promise.all([
       supabase.from("profiles").select("*").order("created_at", { ascending: false }),
       fetchPlans(false),
+      fetchProgress(),
     ]);
+    if (loadError) throw loadError;
+    setProgress(pr);
     setRows((data ?? []) as unknown as Profile[]);
     setPlans(pl);
   }, []);
 
   useEffect(() => {
-    load();
+    load().catch(() => setError("تعذّر تحميل الأعضاء، أعد المحاولة."));
   }, [load]);
 
-  async function patch(id: string, values: Record<string, unknown>) {
-    setBusy(id);
-    await supabase
-      .from("profiles")
-      .update(values as never)
-      .eq("id", id);
-    await load();
-    setBusy(null);
+  async function patch(id: string, values: Partial<Profile>) {
+    if (id === OWNER_ID && values.status && values.status !== "approved") { setError("لا يمكن إيقاف حساب مالك المنصة."); return; }
+    setBusy(id); setError("");
+    try {
+      const {error} = await supabase.from("profiles").update(values).eq("id", id);
+      if (error) throw error;
+      await load();
+    } catch { setError("تعذّر حفظ التغيير. لم يتم تأكيد العملية، حاول مجددًا."); }
+    finally { setBusy(null); }
   }
-
   function approve(p: Profile, planId: string | null, days: number | null, lifetime: boolean) {
-    patch(p.id, {
-      status: "approved",
-      plan_id: planId,
-      is_lifetime: lifetime,
-      access_expires_at:
-        lifetime || days === null
-          ? null
-          : new Date(Date.now() + days * 86400000).toISOString(),
-      approved_at: new Date().toISOString(),
-    });
+    patch(p.id, {status:"approved",plan_id:planId,...accessGrant(days,lifetime)});
   }
 
   const visible = rows.filter((r) => {
+    if (member && r.id !== member) return false;
     if (filter !== "all" && r.status !== filter) return false;
     const term = q.trim().toLowerCase();
     if (!term) return true;
@@ -139,25 +143,27 @@ function MembersTab() {
   const counts = (s: MemberStatus) => rows.filter((r) => r.status === s).length;
 
   return (
-    <section className="panel admin-panel">
+    <section className="admin-panel">
+      {error && <p role="alert" className="auth-msg err">{error}</p>}
+      {member && <Link to="/admin" search={{}} className="linklike">← جميع الأعضاء</Link>}
       <div className="admin-stats">
         {(["pending", "approved", "rejected", "banned"] as MemberStatus[]).map((s) => (
-          <button
+          <Button
             key={s}
             className={`admin-stat ${filter === s ? "on" : ""}`}
             onClick={() => setFilter(filter === s ? "all" : s)}
           >
             <b>{counts(s)}</b>
             <span>{STATUS_LABEL[s]}</span>
-          </button>
+          </Button>
         ))}
-        <button
+        <Button
           className={`admin-stat ${filter === "all" ? "on" : ""}`}
           onClick={() => setFilter("all")}
         >
           <b>{rows.length}</b>
           <span>الكل</span>
-        </button>
+        </Button>
       </div>
 
       <input
@@ -175,6 +181,7 @@ function MembersTab() {
               <th>الحالة</th>
               <th>الخطة</th>
               <th>الصلاحية</th>
+              <th>تقدم الدراسة</th>
               <th>إجراءات</th>
             </tr>
           </thead>
@@ -182,7 +189,7 @@ function MembersTab() {
             {visible.map((p) => (
               <tr key={p.id}>
                 <td>
-                  <b>{p.full_name || "—"}</b>
+                  <Link to="/admin" search={{member:p.id}} className="member-link"><b>{p.full_name || "عضو"}</b> · ملف العضو ↗</Link>
                   <br />
                   <span className="mono" dir="ltr">
                     {p.email}
@@ -196,9 +203,9 @@ function MembersTab() {
                     </>
                   )}
                   <br />
-                  <button className="linklike" onClick={() => setOpen(open === p.id ? null : p.id)}>
+                  <Button className="linklike" onClick={() => setOpen(open === p.id ? null : p.id)}>
                     {open === p.id ? "إخفاء الإجابات" : "عرض الإجابات"}
-                  </button>
+                  </Button>
                   {open === p.id && (
                     <ul className="answers">
                       {Object.entries(p.answers ?? {}).map(([k, v]) => (
@@ -214,7 +221,7 @@ function MembersTab() {
                 </td>
                 <td>
                   <select
-                    value={p.plan_id ?? ""}
+                    value={p.plan_id ?? p.requested_plan_id ?? ""}
                     onChange={(e) => patch(p.id, { plan_id: e.target.value || null })}
                   >
                     <option value="">—</option>
@@ -226,36 +233,39 @@ function MembersTab() {
                   </select>
                 </td>
                 <td>{accessLabel(p)}</td>
+                <td><progress max={LESSON_IDS.length} value={progressCount(progress,p.id)} /><small>{progressCount(progress,p.id)} / {LESSON_IDS.length} درس وصفحة</small></td>
                 <td>
                   <div className="admin-actions">
-                    <button
+                    <Button
                       className="mini ok"
                       disabled={busy === p.id}
                       onClick={() => {
-                        const pl = plans.find((x) => x.id === p.plan_id);
-                        approve(p, p.plan_id, pl?.duration_days ?? 30, false);
+                        const chosen = p.plan_id ?? p.requested_plan_id;
+                        const pl = plans.find((x) => x.id === chosen);
+                        if (!pl) { setError("اختر خطة قبل المصادقة."); return; }
+                        approve(p, pl.id, pl.duration_days, pl.duration_days === null);
                       }}
                     >
                       مصادقة حسب الخطة
-                    </button>
-                    <button className="mini" onClick={() => approve(p, p.plan_id, 3, false)}>
+                    </Button>
+                    <Button className="mini" onClick={() => approve(p, p.plan_id, 3, false)}>
                       تجربة 3 أيام
-                    </button>
-                    <button className="mini" onClick={() => approve(p, p.plan_id, 30, false)}>
+                    </Button>
+                    <Button className="mini" onClick={() => approve(p, p.plan_id, 30, false)}>
                       شهر
-                    </button>
-                    <button className="mini" onClick={() => approve(p, p.plan_id, null, true)}>
+                    </Button>
+                    <Button className="mini" onClick={() => approve(p, p.plan_id, null, true)}>
                       مدى الحياة
-                    </button>
-                    <button className="mini warn" onClick={() => patch(p.id, { status: "rejected" })}>
+                    </Button>
+                    <Button className="mini warn" onClick={() => patch(p.id, { status: "rejected" })}>
                       رفض
-                    </button>
-                    <button className="mini danger" onClick={() => patch(p.id, { status: "banned" })}>
+                    </Button>
+                    <Button className="mini danger" onClick={() => patch(p.id, { status: "banned" })}>
                       حظر
-                    </button>
-                    <button className="mini" onClick={() => patch(p.id, { status: "pending" })}>
+                    </Button>
+                    <Button className="mini" onClick={() => patch(p.id, { status: "pending" })}>
                       إرجاع للمراجعة
-                    </button>
+                    </Button>
                     <input
                       type="date"
                       onChange={(e) =>
@@ -282,7 +292,7 @@ function MembersTab() {
             ))}
             {visible.length === 0 && (
               <tr>
-                <td colSpan={5}>لا يوجد أعضاء مطابقون.</td>
+                <td colSpan={6}>لا يوجد أعضاء مطابقون.</td>
               </tr>
             )}
           </tbody>
@@ -303,39 +313,50 @@ const EMPTY_PLAN = {
   is_active: true,
   is_trial: false,
   sort_order: 0,
+  image_url: "",
+  price_description: "",
 };
 
 function PlansTab() {
+  const [error,setError] = useState("");
+  const [busy,setBusy] = useState(false);
   const [plans, setPlans] = useState<Plan[]>([]);
   const [draft, setDraft] = useState({ ...EMPTY_PLAN });
 
   const load = useCallback(async () => setPlans(await fetchPlans(false)), []);
   useEffect(() => {
-    load();
+    load().catch(()=>setError("تعذّر تحميل البيانات"));
   }, [load]);
 
   async function update(id: string, values: Partial<Plan>) {
-    await supabase.from("plans").update(values).eq("id", id);
-    load();
+    setError("");
+    const {error} = await supabase.from("plans").update(values).eq("id", id);
+    if (error) {setError("تعذّر حفظ الخطة");return;}
+    await load();
   }
 
   async function create() {
     if (!draft.name.trim()) return;
-    await supabase.from("plans").insert({
+    setBusy(true);
+    const {error} = await supabase.from("plans").insert({
       ...draft,
       description: draft.description || null,
       duration_days: draft.duration_days,
     });
+    setBusy(false);
+    if(error) {setError("تعذّر إضافة الخطة");return;}
     setDraft({ ...EMPTY_PLAN });
-    load();
+    await load();
   }
 
   return (
-    <section className="panel admin-panel">
+    <section className="admin-panel">
+      {error && <p role="alert" className="auth-msg err">{error}</p>}
       <div className="table-wrap">
         <table className="tech">
           <thead>
             <tr>
+              <th>صورة الخطة ووصف السعر</th>
               <th>الاسم</th>
               <th>السعر</th>
               <th>العملة</th>
@@ -349,6 +370,7 @@ function PlansTab() {
           <tbody>
             {plans.map((p) => (
               <tr key={p.id}>
+                <td><img className="plan-thumb" src={planImage(p)} alt={p.name} /><input aria-label={`صورة ${p.name}`} type="url" placeholder="رابط صورة الخطة" defaultValue={p.image_url ?? ""} onBlur={e=>update(p.id,{image_url:e.target.value || null})} /><textarea aria-label={`وصف سعر ${p.name}`} defaultValue={priceDescription(p)} onBlur={e=>update(p.id,{price_description:e.target.value || null})}/></td>
                 <td>
                   <input
                     defaultValue={p.name}
@@ -410,15 +432,16 @@ function PlansTab() {
                   />
                 </td>
                 <td>
-                  <button
+                  <Button
                     className="mini danger"
                     onClick={async () => {
-                      await supabase.from("plans").delete().eq("id", p.id);
-                      load();
+                      if (!window.confirm("حذف هذه الخطة؟")) return;
+                      const {error} = await supabase.from("plans").delete().eq("id", p.id);
+                      if(error) setError("تعذّر حذف الخطة"); else await load();
                     }}
                   >
                     حذف
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))}
@@ -457,9 +480,11 @@ function PlansTab() {
             setDraft({ ...draft, duration_days: e.target.value ? Number(e.target.value) : null })
           }
         />
-        <button className="btn" onClick={create}>
+        <input type="url" placeholder="رابط صورة الخطة" value={draft.image_url} onChange={e=>setDraft({...draft,image_url:e.target.value})} />
+        <input placeholder="وصف السعر وشروط الاشتراك" value={draft.price_description} onChange={e=>setDraft({...draft,price_description:e.target.value})} />
+        <Button className="btn" disabled={busy} onClick={create}>
           إضافة
-        </button>
+        </Button>
       </div>
     </section>
   );
@@ -479,22 +504,24 @@ const EMPTY_FIELD = {
 };
 
 function FieldsTab() {
+  const [error,setError] = useState("");
   const [fields, setFields] = useState<FormField[]>([]);
   const [draft, setDraft] = useState({ ...EMPTY_FIELD });
 
   const load = useCallback(async () => setFields(await fetchFormFields(false)), []);
   useEffect(() => {
-    load();
+    load().catch(()=>setError("تعذّر تحميل البيانات"));
   }, [load]);
 
   async function update(id: string, values: Partial<FormField>) {
-    await supabase.from("form_fields").update(values).eq("id", id);
-    load();
+    const {error} = await supabase.from("form_fields").update(values).eq("id", id);
+    if(error) {setError("تعذّر حفظ الخانة");return;}
+    await load();
   }
 
   async function create() {
     if (!draft.field_key.trim() || !draft.label.trim()) return;
-    await supabase.from("form_fields").insert({
+    const {error} = await supabase.from("form_fields").insert({
       field_key: draft.field_key.trim(),
       label: draft.label.trim(),
       field_type: draft.field_type,
@@ -504,12 +531,14 @@ function FieldsTab() {
       is_active: draft.is_active,
       sort_order: draft.sort_order,
     });
+    if(error) {setError("تعذّر إضافة الخانة؛ تأكد أن المفتاح غير مكرر.");return;}
     setDraft({ ...EMPTY_FIELD });
-    load();
+    await load();
   }
 
   return (
-    <section className="panel admin-panel">
+    <section className="admin-panel">
+      {error && <p role="alert" className="auth-msg err">{error}</p>}
       <div className="table-wrap">
         <table className="tech">
           <thead>
@@ -591,15 +620,16 @@ function FieldsTab() {
                   />
                 </td>
                 <td>
-                  <button
+                  <Button
                     className="mini danger"
                     onClick={async () => {
-                      await supabase.from("form_fields").delete().eq("id", f.id);
-                      load();
+                      if(!window.confirm("حذف هذه الخانة؟")) return;
+                      const {error} = await supabase.from("form_fields").delete().eq("id", f.id);
+                      if(error) setError("تعذّر حذف الخانة"); else await load();
                     }}
                   >
                     حذف
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))}
@@ -643,9 +673,9 @@ function FieldsTab() {
           />
           مطلوب
         </label>
-        <button className="btn" onClick={create}>
+        <Button className="btn" onClick={create}>
           إضافة
-        </button>
+        </Button>
       </div>
     </section>
   );
