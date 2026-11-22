@@ -666,3 +666,16 @@ p, li, td, th, h1, h2, h3, h4, h5 { overflow-wrap: break-word; }
 .access-plan b { color: #fff; display: block; }
 .access-plan span { font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; color: var(--money); }
 .access-plan small { display: block; color: var(--text-muted); font-size: 0.78rem; margin-top: 0.2rem; }
+
+/* Library */
+.lib-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.lib-card{display:flex;flex-direction:column;gap:.5rem;text-decoration:none;color:inherit}
+.lib-card h3{margin:0}
+.lib-bar{height:6px;background:var(--line,rgba(127,127,127,.25));border-radius:99px;overflow:hidden}
+.lib-bar i{display:block;height:100%;background:var(--cyan)}
+.reader-top{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}
+.reader-chapters{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0}
+.reader-chapters a{padding:.35rem .7rem;border:1px solid currentColor;border-radius:99px;font-size:.85rem;opacity:.6;text-decoration:none;color:inherit}
+.reader-chapters a.on{opacity:1;color:var(--cyan)}
+.reader-page{line-height:2;font-size:1.05rem;white-space:pre-line;max-width:72ch}
+.reader-done{display:flex;gap:.5rem;align-items:center;margin:1.2rem 0;font-weight:600;min-height:44px}

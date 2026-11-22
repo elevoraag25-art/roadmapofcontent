@@ -58,7 +58,7 @@ function AdminPage() {
           <span className="mono">ELEVORA AGENCY · ADMIN</span>
           <h1>لوحة التحكم</h1>
         </div>
-        <Link to="/library" className="btn ghost">المكتبة التعليمية</Link>
+        <Link to="/library" search={{}} className="btn ghost">المكتبة التعليمية</Link>
         <Link to="/account" className="btn ghost">
           حسابي
         </Link>

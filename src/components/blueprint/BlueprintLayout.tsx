@@ -46,6 +46,9 @@ function SideAuth({ onNavigate }: { onNavigate?: () => void }) {
         </Link>
       ) : (
         <>
+          <Link to="/library" search={{}} onClick={onNavigate}>
+            <i className="fas fa-book-open" aria-hidden="true"></i> المكتبة التعليمية
+          </Link>
           <Link to="/account" onClick={onNavigate}>
             <i className="fas fa-user-gear" aria-hidden="true"></i> حسابي
           </Link>
