@@ -679,3 +679,68 @@ p, li, td, th, h1, h2, h3, h4, h5 { overflow-wrap: break-word; }
 .reader-chapters a.on{opacity:1;color:var(--cyan)}
 .reader-page{line-height:2;font-size:1.05rem;white-space:pre-line;max-width:72ch}
 .reader-done{display:flex;gap:.5rem;align-items:center;margin:1.2rem 0;font-weight:600;min-height:44px}
+
+/* ============================================================
+   LEARNING PLATFORM SKIN — calm, organized, professional
+   ============================================================ */
+:root {
+  --blueprint: oklch(0.2 0.03 255);
+  --blueprint-2: oklch(0.17 0.028 255);
+  --blueprint-3: oklch(0.19 0.03 255);
+  --surface: oklch(0.235 0.03 255);
+  --surface-2: oklch(0.27 0.032 255);
+  --line: oklch(0.36 0.03 255 / 0.6);
+  --cyan: oklch(0.8 0.12 200);
+  --cyan-dim: oklch(0.8 0.12 200 / 0.12);
+  --redline: oklch(0.74 0.16 50);
+  --redline-dim: oklch(0.74 0.16 50 / 0.13);
+  --money: oklch(0.78 0.15 160);
+  --money-dim: oklch(0.78 0.15 160 / 0.13);
+  --text: oklch(0.95 0.01 250);
+  --text-muted: oklch(0.74 0.03 250);
+  --paper: oklch(0.97 0.008 85);
+  --paper-2: oklch(0.93 0.012 85);
+  --shadow-card: 0 1px 0 oklch(1 0 0 / 0.04) inset, 0 18px 40px -24px oklch(0 0 0 / 0.7);
+  --radius-card: 14px;
+}
+body {
+  background-image: radial-gradient(1200px 600px at 100% -10%, oklch(0.8 0.12 200 / 0.08), transparent 60%),
+    radial-gradient(900px 500px at 0% 0%, oklch(0.74 0.16 50 / 0.06), transparent 60%);
+  background-attachment: fixed; font-size: 16px; line-height: 1.85;
+}
+h1 { font-size: clamp(1.9rem, 4.5vw, 3rem); line-height: 1.25; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.35; }
+h3 { font-size: clamp(1.1rem, 2.2vw, 1.35rem); line-height: 1.45; }
+p, li { color: var(--text-muted); }
+.ruler { background: var(--blueprint-2); border-bottom: 1px solid var(--line); }
+.ruler-ticks { opacity: 0.18; }
+.sidebar { background: var(--blueprint-2); border-left: 1px solid var(--line); }
+.navlist a { border-radius: 10px; }
+.navlist a.active { background: var(--cyan-dim); }
+.nav-group-title { letter-spacing: 0.02em; }
+.mobile-bar { background: oklch(0.17 0.028 255 / 0.9); border-bottom: 1px solid var(--line); }
+.mobile-toggle, .mobile-menu .close-btn { border-radius: 10px; border-color: var(--line); }
+.panel, .acc, .chart-card, .sec-card, .lib-card, .auth-card, .admin-panel, .access-cta, .admin-stat, .access-plan, .auth-plan {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card);
+}
+.panel:hover, .sec-card:hover, .lib-card:hover { transform: translateY(-3px); border-color: oklch(0.8 0.12 200 / 0.45); background: var(--surface-2); }
+.paper { border-radius: var(--radius-card); box-shadow: var(--shadow-card); }
+.paper:hover { transform: translateY(-3px); }
+.paper::before { display: none; }
+.metric, .quote { border-radius: 10px; }
+.table-wrap { border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; }
+table.tech thead th { background: var(--surface-2); }
+.btn { border-radius: 10px; min-height: 44px; font-weight: 700; transition: transform .2s var(--ease), background .2s ease, box-shadow .2s ease; }
+.btn:hover { transform: translateY(-1px); }
+.badge { border-radius: 999px; padding-inline: .7rem; }
+.sheet-head { padding-bottom: 1.2rem; border-bottom: 1px solid var(--line); margin-bottom: 2rem; }
+.sheet + .sheet { margin-top: 1rem; }
+.container { max-width: 1120px; }
+.pager-link { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.pager-link:hover { border-color: var(--cyan); }
+input, select, textarea { border-radius: 10px !important; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+@media (max-width: 640px) {
+  .panel, .paper, .sec-card, .lib-card, .auth-card, .admin-panel { padding: 1.15rem; }
+  body { font-size: 15.5px; }
+}
